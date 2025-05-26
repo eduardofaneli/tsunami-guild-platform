@@ -140,7 +140,3 @@ Interessado em fazer parte da nossa guild? Visite nossa plataforma e candidate-s
 ---
 
 **Para a glória! Para a TSUNAMI! 🌊⚔️**
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
