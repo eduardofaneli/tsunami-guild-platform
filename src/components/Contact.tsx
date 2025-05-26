@@ -277,7 +277,7 @@ const Contact = () => {
                 Junte-se para conversar, coordenar raids e conhecer a comunidade.
               </ContactInfo>
               <ContactButton
-                href="https://discord.gg/tsunami"
+                href="https://discord.gg/BAr8yMF8YR"
                 target="_blank"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -296,19 +296,20 @@ const Contact = () => {
               </ContactIcon>
               <ContactTitle>Horários de Atividade</ContactTitle>
               <ContactInfo>
-                <strong>Raids:</strong> Terças e Quintas às 20:00<br />
-                <strong>PvP:</strong> Sábados às 19:00<br />
-                <strong>Eventos:</strong> Domingos às 18:00<br />
+                {/* <strong>Raids:</strong> Terças e Quintas às 20:00<br /> */}
+                <strong>PvP:</strong> Todos os dias Horário Prime: 20:00 ~ 22:00<br />
+                <strong>ArchBoss:</strong> Quarta-Feira e Sábado às 20:00<br/>
+                <strong>Inter-Server:</strong> Sexta-Feira e Sábado das 21:30<br />
                 <strong>Suporte:</strong> Todos os dias das 18:00 às 23:00
               </ContactInfo>
-              <ContactButton
+              {/* <ContactButton
                 href="#application"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Calendar size={18} />
                 Ver Calendário
-              </ContactButton>
+              </ContactButton> */}
             </ContactCard>
 
             <ContactCard
@@ -320,10 +321,11 @@ const Contact = () => {
               </ContactIcon>
               <ContactTitle>Requisitos</ContactTitle>
               <ContactInfo>
-                <strong>Level mínimo:</strong> 40+<br />
-                <strong>Gear Score:</strong> 2500+<br />
-                <strong>Atividade:</strong> Mínimo 3x por semana<br />
+                <strong>Level mínimo:</strong> 55<br />
+                <strong>Gear Score:</strong> 5800+<br />
+                <strong>Atividade:</strong> Mínimo 5x por semana<br />
                 <strong>Discord:</strong> Obrigatório<br />
+                <strong>TS3:</strong> Obrigatório<br />
                 <strong>Idade:</strong> 18+ anos
               </ContactInfo>
               <ContactButton
@@ -347,8 +349,8 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <LeaderAvatar>T</LeaderAvatar>
-                <LeaderName>TsunamiKing</LeaderName>
+                <LeaderAvatar>S</LeaderAvatar>
+                <LeaderName>Sartore</LeaderName>
                 <LeaderRole>Guild Master</LeaderRole>
                 <LeaderDescription>
                   Veterano de MMORPGs com mais de 10 anos de experiência. 
@@ -360,9 +362,9 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <LeaderAvatar>S</LeaderAvatar>
-                <LeaderName>StormBreaker</LeaderName>
-                <LeaderRole>Vice-Guild Master</LeaderRole>
+                <LeaderAvatar>L</LeaderAvatar>
+                <LeaderName>Legazov</LeaderName>
+                <LeaderRole>Advisor</LeaderRole>
                 <LeaderDescription>
                   Especialista em PvP e coordenação de raids. 
                   Responsável por treinar novos membros.
@@ -373,9 +375,9 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <LeaderAvatar>W</LeaderAvatar>
-                <LeaderName>WaveRider</LeaderName>
-                <LeaderRole>Officer</LeaderRole>
+                <LeaderAvatar>D</LeaderAvatar>
+                <LeaderName>DerbyVermelho</LeaderName>
+                <LeaderRole>Advisor</LeaderRole>
                 <LeaderDescription>
                   Gerencia eventos e atividades da guild. 
                   Sempre disponível para ajudar os membros.

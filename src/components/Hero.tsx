@@ -308,7 +308,7 @@ const Hero = () => {
               <StatIcon>
                 <Users />
               </StatIcon>
-              <StatNumber>150+</StatNumber>
+              <StatNumber>60+</StatNumber>
               <StatLabel>Membros Ativos</StatLabel>
             </StatCard>
 
@@ -319,8 +319,8 @@ const Hero = () => {
               <StatIcon>
                 <Crown />
               </StatIcon>
-              <StatNumber>25+</StatNumber>
-              <StatLabel>Territórios</StatLabel>
+              <StatNumber>2</StatNumber>
+              <StatLabel>Boomstone</StatLabel>
             </StatCard>
 
             <StatCard
@@ -341,7 +341,7 @@ const Hero = () => {
               <StatIcon>
                 <Shield />
               </StatIcon>
-              <StatNumber>TOP 3</StatNumber>
+              <StatNumber>TOP 6</StatNumber>
               <StatLabel>Ranking</StatLabel>
             </StatCard>
           </StatsGrid>

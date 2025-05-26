@@ -251,7 +251,7 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Nossa Comunidade</FeatureTitle>
               <FeatureDescription>
-                Somos mais que uma guild, somos uma família. Com mais de 150 membros 
+                Somos mais que uma guild, somos uma família. Com mais de 60 membros 
                 ativos, oferecemos um ambiente acolhedor onde veteranos ajudam novatos 
                 e todos crescem juntos em direção à excelência.
               </FeatureDescription>
@@ -266,8 +266,7 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Nossos Conquistas</FeatureTitle>
               <FeatureDescription>
-                Atualmente rankeados no TOP 3 do servidor, com mais de 25 territórios 
-                sob nosso controle e mais de 500 vitórias em batalhas épicas. Nossa 
+                Atualmente rankeados no TOP 6 do servidor, com PvP super ativo, todos os dias, brigando por BoomStone, mantendo sempre duas sobre nosso controle e mais de 500 vitórias em batalhas épicas. Nossa 
                 história é escrita com sangue, suor e glória.
               </FeatureDescription>
             </FeatureCard>

@@ -265,7 +265,7 @@ const Footer = () => {
                 </FooterLink>
               </li>
               <li>
-                <FooterLink href="https://discord.gg/tsunami" target="_blank">
+                <FooterLink href="https://discord.gg/BAr8yMF8YR" target="_blank">
                   Discord <ExternalLink />
                 </FooterLink>
               </li>
@@ -279,19 +279,19 @@ const Footer = () => {
                 <strong>Jogo:</strong> Throne and Liberty
               </InfoItem>
               <InfoItem>
-                <strong>Servidor:</strong> Kazar (SA)
+                <strong>Servidor:</strong> Starlight (SA)
               </InfoItem>
               <InfoItem>
-                <strong>Facção:</strong> Union
+                <strong>Facção:</strong> TSUNAMI 水
               </InfoItem>
               <InfoItem>
-                <strong>Rank:</strong> TOP 3
+                <strong>Rank:</strong> TOP 6
               </InfoItem>
               <InfoItem>
-                <strong>Membros:</strong> 150+ ativos
+                <strong>Membros:</strong> 50+ ativos
               </InfoItem>
               <InfoItem>
-                <strong>Fundada:</strong> Novembro 2024
+                <strong>Fundada:</strong> Outubro de 2024
               </InfoItem>
             </InfoList>
           </GameInfo>
@@ -301,12 +301,12 @@ const Footer = () => {
 
         <BottomSection>
           <Copyright>
-            © 2024 Guild TSUNAMI. Feito com <Heart /> para a comunidade gamer.
+            © 2024 Guild TSUNAMI 水. Feito com <Heart /> para a comunidade gamer.
           </Copyright>
           
           <SocialLinks>
             <SocialLink
-              href="https://discord.gg/tsunami"
+              href="https://discord.gg/BAr8yMF8YR"
               target="_blank"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -314,23 +314,23 @@ const Footer = () => {
               💬
             </SocialLink>
             
-            <SocialLink
+            {/* <SocialLink
               href="https://www.youtube.com/@tsunami-guild"
               target="_blank"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               📺
-            </SocialLink>
+            </SocialLink> */}
             
-            <SocialLink
+            {/* <SocialLink
               href="https://twitch.tv/tsunami-guild"
               target="_blank"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               🎮
-            </SocialLink>
+            </SocialLink> */}
             
             <SocialLink
               onClick={scrollToTop}
