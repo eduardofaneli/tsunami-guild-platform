@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { Send, User, GamepadIcon, MessageSquare, Clock, Languages } from 'lucide-react'
-import { useState } from 'react'
 import ClassDropdown from './ClassDropdown'
 
 const ApplicationSection = styled.section`
@@ -229,6 +229,62 @@ const SuccessMessage = styled(motion.div)`
   }
 `
 
+const ButtonRow = styled.div`
+  display: flex;
+  gap: ${props => props.theme.spacing.md};
+  margin-bottom: ${props => props.theme.spacing.lg};
+  align-items: center;
+  justify-content: center;
+`
+
+interface ModernButtonProps {
+  variant?: 'primary' | 'accent';
+}
+
+const ModernButton = styled.button<ModernButtonProps>`
+  background-color: ${props =>
+    props.variant === 'primary' ? props.theme.colors.primary :
+      props.variant === 'accent' ? props.theme.colors.accent :
+        props.theme.colors.secondary};
+  color: ${props => props.theme.colors.text.primary};
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: ${props => props.theme.borderRadius.md};
+  padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.lg}; // Adjusted padding
+  cursor: pointer;
+  font-weight: 600;
+  font-size: ${props => props.theme.fontSizes.sm}; // Adjusted font size
+  font-family: ${props => props.theme.fonts.body};
+  transition: 
+    background-color ${props => props.theme.transitions.normal},
+    transform ${props => props.theme.transitions.fast},
+    box-shadow ${props => props.theme.transitions.normal};
+  box-shadow: ${props => props.theme.shadows.md};
+  text-transform: uppercase; // Added for a more refined look
+  letter-spacing: 0.5px; // Added for better readability
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${props => props.theme.shadows.lg}, ${props =>
+    props.variant === 'primary' ? props.theme.shadows.glow :
+      props.variant === 'accent' ? `0 0 15px ${props.theme.colors.accent}4D` : // Custom glow for accent
+        props.theme.shadows.glowPurple};
+    // Slightly darken/lighten based on variant for a subtle effect
+    background-color: ${props =>
+    props.variant === 'primary' ? `color-mix(in srgb, ${props.theme.colors.primary} 90%, black)` :
+      props.variant === 'accent' ? `color-mix(in srgb, ${props.theme.colors.accent} 90%, black)` :
+        `color-mix(in srgb, ${props.theme.colors.secondary} 90%, black)`};
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: ${props => props.theme.shadows.sm};
+    background-color: ${props =>
+    props.variant === 'primary' ? `color-mix(in srgb, ${props.theme.colors.primary} 80%, black)` :
+      props.variant === 'accent' ? `color-mix(in srgb, ${props.theme.colors.accent} 80%, black)` :
+        `color-mix(in srgb, ${props.theme.colors.secondary} 80%, black)`};
+  }
+`;
+
 interface ClassInfo {
   className: string;
   weapon1: string;
@@ -255,16 +311,28 @@ export interface ApplicationFormData {
   termsAccepted?: boolean;
 }
 
+const LOCAL_STORAGE_KEY = 'tsunami_application_cache';
+
+
 const ApplicationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [hasCache, setHasCache] = useState(false)
+
+  // Carregar cache ao montar
+  useEffect(() => {
+    setHasCache(!!localStorage.getItem(LOCAL_STORAGE_KEY))
+  }, [])
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-    reset
+    reset,
+    // setValue removido pois não é utilizado
+    trigger
   } = useForm<ApplicationFormData>({
     defaultValues: {
       previousGuilds: [{ name: '' }],
@@ -279,35 +347,91 @@ const ApplicationForm = () => {
     },
   })
 
+  // Recuperar do cache
+  const handleRestoreCache = async () => {
+    const cache = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (cache) {
+      try {
+        const data: ApplicationFormData = JSON.parse(cache)
+        reset(data)
+        // Corrige o número de guilds dinâmicas
+        if (data.previousGuilds && data.previousGuilds.length > 1) {
+          for (let i = fields.length; i < data.previousGuilds.length; i++) {
+            append({ name: '' })
+          }
+        }
+        // Força validação dos campos customizados
+        await trigger(['primaryClass', 'secondaryClass'])
+        setSubmitError(null)
+      } catch { }
+    }
+  }
+
+  // Limpar formulário e cache
+  const handleClearForm = () => {
+    // Limpa todos os campos para o estado inicial (inclusive previousGuilds)
+    reset({
+      playerName: '',
+      discordTag: '',
+      language: '',
+      age: undefined,
+      playtime: '',
+      gearScore: undefined,
+      primaryClass: undefined,
+      secondaryClass: undefined,
+      previousGuilds: [{ name: '' }],
+      experience: '',
+      motivation: '',
+      termsAccepted: false,
+    })
+    localStorage.removeItem(LOCAL_STORAGE_KEY)
+    setHasCache(false)
+    setSubmitError(null)
+  }
+
   const onSubmit = async (formData: ApplicationFormData) => {
     setIsSubmitting(true)
+    setSubmitError(null)
 
-    // URL do webhook do Discord (coloque sua URL real aqui ou em uma env var)
     const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL || '';
     const roleId = import.meta.env.VITE_DISCORD_ROLE_ID || '';
 
+    let sent = false;
     if (webhookUrl) {
       try {
         const { sendDiscordApplication } = await import('../services/sendDiscordApplication');
-        await sendDiscordApplication(formData, webhookUrl, roleId);
+        sent = await sendDiscordApplication(formData, webhookUrl, roleId);
       } catch (err) {
-        // fallback para log local
+        sent = false;
         if (process.env.NODE_ENV !== 'production') {
           console.error('Erro ao enviar para o Discord:', err);
           console.log('Dados do formulário:', formData);
         }
       }
     } else {
-      // fallback para log local
       if (process.env.NODE_ENV !== 'production') {
         console.warn('Webhook do Discord não configurado. Veja .env.local');
         console.log('Dados do formulário:', formData);
       }
     }
 
-    setIsSubmitted(true)
-    setIsSubmitting(false)
-    reset()
+    if (sent) {
+      setIsSubmitted(true)
+      setIsSubmitting(false)
+      reset()
+      localStorage.removeItem(LOCAL_STORAGE_KEY)
+      setHasCache(false)
+    } else {
+      // Salva no cache/localStorage
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData))
+        setHasCache(true)
+      } catch { }
+      setSubmitError(
+        'Não foi possível enviar sua candidatura para o Discord. Seus dados foram salvos localmente. Tente novamente mais tarde ou entre em contato com a liderança da TSUNAMI pelo Discord.'
+      )
+      setIsSubmitting(false)
+    }
   }
 
   const containerVariants = {
@@ -344,7 +468,10 @@ const ApplicationForm = () => {
               e entraremos em contato através do Discord em até 48 horas.
             </p>
             <button
-              onClick={() => setIsSubmitted(false)}
+              onClick={() => {
+                setIsSubmitted(false);
+                handleClearForm(); // Adicionado para limpar o formulário
+              }}
               style={{
                 background: 'rgba(255,255,255,0.2)',
                 border: 'none',
@@ -356,6 +483,52 @@ const ApplicationForm = () => {
               }}
             >
               Enviar Nova Candidatura
+            </button>
+          </SuccessMessage>
+        </Container>
+      </ApplicationSection>
+    )
+  }
+
+  // Exibe mensagem de erro amigável sem o formulário, com botão para tentar novamente
+  if (submitError) {
+    return (
+      <ApplicationSection id="application">
+        <Container>
+          <SuccessMessage
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            style={{ background: 'linear-gradient(135deg, #e57373, #b71c1c)' }}
+          >
+            <h3>Falha ao Enviar Candidatura</h3>
+            <p style={{ marginBottom: 24 }}>{submitError}</p>
+            <button
+              onClick={async () => {
+                // Recupera do cache e volta ao formulário preenchido
+                const cache = localStorage.getItem(LOCAL_STORAGE_KEY)
+                if (cache) {
+                  try {
+                    const data: ApplicationFormData = JSON.parse(cache)
+                    reset(data)
+                    await trigger(['primaryClass', 'secondaryClass'])
+                  } catch { }
+                }
+                setSubmitError(null)
+              }}
+              style={{
+                background: '#222',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 6,
+                padding: '10px 28px',
+                fontWeight: 600,
+                fontSize: 18,
+                cursor: 'pointer',
+                marginTop: 8
+              }}
+            >
+              Tentar Novamente
             </button>
           </SuccessMessage>
         </Container>
@@ -382,6 +555,25 @@ const ApplicationForm = () => {
           </Description>
 
           <FormContainer variants={itemVariants}>
+            {/* Opções de cache/restaurar/limpar */}
+            {hasCache && (
+              <ButtonRow>
+                <ModernButton
+                  type="button"
+                  onClick={handleRestoreCache}
+                  variant="primary" // Changed from "success"
+                >
+                  Recuperar último preenchimento
+                </ModernButton>
+                <ModernButton
+                  type="button"
+                  onClick={handleClearForm}
+                  variant="accent" // Changed from "danger"
+                >
+                  Limpar formulário
+                </ModernButton>
+              </ButtonRow>
+            )}
             <Form onSubmit={handleSubmit(onSubmit)}>
               <FormRow>
                 <FormGroup>
@@ -398,7 +590,6 @@ const ApplicationForm = () => {
                   />
                   {errors.playerName && <ErrorMessage>{errors.playerName.message}</ErrorMessage>}
                 </FormGroup>
-
                 <FormGroup>
                   <Label>
                     <MessageSquare />
@@ -443,6 +634,7 @@ const ApplicationForm = () => {
                     inputMode="numeric"
                     pattern="[0-9]*"
                     min="0"
+                    maxLength={2} // Added maxLength for age
                     onKeyDown={e => {
                       if (
                         !(
@@ -456,7 +648,7 @@ const ApplicationForm = () => {
                     {...register('age', {
                       required: 'Idade é obrigatória',
                       min: { value: 18, message: 'Idade mínima: 18 anos' },
-                      max: { value: 90, message: 'Idade máxima: 90 anos' },
+                      max: { value: 99, message: 'Idade máxima: 99 anos' }, // Adjusted max age
                       valueAsNumber: true,
                       validate: value => Number.isInteger(value) || 'Digite apenas números inteiros'
                     })}
@@ -493,6 +685,7 @@ const ApplicationForm = () => {
                     inputMode="numeric"
                     pattern="[0-9]*"
                     min="0"
+                    maxLength={4} // Added maxLength for gear score
                     onKeyDown={e => {
                       if (
                         !(
@@ -506,7 +699,7 @@ const ApplicationForm = () => {
                     {...register('gearScore', {
                       required: 'Gear Score é obrigatório',
                       min: { value: 4000, message: 'Gear Score mínimo: 4000' },
-                      max: { value: 9999, message: 'Máximo de 4 dígitos' },
+                      max: { value: 9999, message: 'Gear Score máximo: 9999' }, // Ensured max is 4 digits
                       valueAsNumber: true,
                       validate: value => Number.isInteger(value) || 'Digite apenas números inteiros'
                     })}

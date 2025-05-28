@@ -46,7 +46,7 @@ export const buildDiscordPayload = (data: ApplicationFormData, roleId?: string) 
         {
             name: "🏰 Guilds Anteriores",
             value: Array.isArray(data.previousGuilds) && data.previousGuilds.length > 0
-                ? data.previousGuilds.map((g, idx) =>
+                ? data.previousGuilds.map(g =>
                     `• **${g.name}**${g.reason ? ` — _${g.reason}_` : ''}`
                   ).join('\n')
                 : "Não informado",
