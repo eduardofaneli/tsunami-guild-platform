@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { ChevronDown, Search } from 'lucide-react'
-import { commonAssets, getAssetPath, AssetType } from '../services/assetService'
+import { commonAssets, getAssetPath, ASSET_TYPES } from '../services/assetService'
 
 // Interface para integração com ApplicationFormData
 export interface ClassInfo {
@@ -381,6 +381,16 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
     "Selecione sua classe secundária (opcional)" : 
     "Selecione sua classe principal"
 
+  if (selectedClass) {
+    console.group(`[ClassDropdown] Displaying Selected Class: ${selectedClass.class}`);
+    console.log('Raw selectedClass.weapon1_icon_url:', selectedClass.weapon1_icon_url);
+    console.log('Generated path for weapon1:', getAssetPath(selectedClass.weapon1_icon_url, ASSET_TYPES.WEAPONS));
+    console.log('Raw selectedClass.weapon2_icon_url:', selectedClass.weapon2_icon_url);
+    console.log('Generated path for weapon2:', getAssetPath(selectedClass.weapon2_icon_url, ASSET_TYPES.WEAPONS));
+    console.groupEnd();
+  }
+
+
   return (
     <DropdownContainer ref={dropdownRef}>
       <DropdownButton
@@ -394,13 +404,13 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
               <ClassIconsContainer>
                 <WeaponIcon>
                   <WeaponImage 
-                    src={getAssetPath(selectedClass.weapon1_icon_url, AssetType.WEAPONS)} 
+                    src={getAssetPath(selectedClass.weapon1_icon_url, ASSET_TYPES.WEAPONS)} 
                     alt={selectedClass.weapon1} 
                   />
                 </WeaponIcon>
                 <WeaponIcon>
                   <WeaponImage 
-                    src={getAssetPath(selectedClass.weapon2_icon_url, AssetType.WEAPONS)} 
+                    src={getAssetPath(selectedClass.weapon2_icon_url, ASSET_TYPES.WEAPONS)} 
                     alt={selectedClass.weapon2} 
                   />
                 </WeaponIcon>
@@ -434,6 +444,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
         ) : filteredClasses.length > 0 ? (
           <>
             {filteredClasses.map((classItem) => (
+                
               <DropdownItem 
                 key={classItem.class}
                 isSelected={selectedClass?.class === classItem.class}
@@ -442,13 +453,13 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
                 <ClassIconsContainer>
                   <WeaponIcon>
                     <WeaponImage 
-                      src={getAssetPath(classItem.weapon1_icon_url, AssetType.WEAPONS)} 
+                      src={getAssetPath(classItem.weapon1_icon_url, ASSET_TYPES.WEAPONS)} 
                       alt={classItem.weapon1} 
                     />
                   </WeaponIcon>
                   <WeaponIcon>
                     <WeaponImage 
-                      src={getAssetPath(classItem.weapon2_icon_url, AssetType.WEAPONS)} 
+                      src={getAssetPath(classItem.weapon2_icon_url, ASSET_TYPES.WEAPONS)} 
                       alt={classItem.weapon2} 
                     />
                   </WeaponIcon>

@@ -2,197 +2,197 @@
   {
     "class": "Battleweaver",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
+    "weapon1_icon_url": "crossbow.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "/assets/weapons/staff.webp"
+    "weapon2_icon_url": "staff.webp"
   },
   {
     "class": "Berserker",
     "weapon1": "Sword",
-    "weapon1_icon_url": "/assets/weapons/sword.webp",
+    "weapon1_icon_url": "sword.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Cavalier",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Crossbow",
-    "weapon2_icon_url": "/assets/weapons/crossbow.webp"
+    "weapon2_icon_url": "crossbow.webp"
   },
   {
     "class": "Crusader",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
+    "weapon1_icon_url": "greatsword.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "/assets/weapons/sword.webp"
+    "weapon2_icon_url": "sword.webp"
   },
   {
     "class": "Darkblighter",
     "weapon1": "Daggers",
-    "weapon1_icon_url": "/assets/weapons/daggers.webp",
+    "weapon1_icon_url": "daggers.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Disciple",
     "weapon1": "Sword",
-    "weapon1_icon_url": "/assets/weapons/sword.webp",
+    "weapon1_icon_url": "sword.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "/assets/weapons/staff.webp"
+    "weapon2_icon_url": "staff.webp"
   },
   {
     "class": "Eradicator",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "/assets/weapons/staff.webp"
+    "weapon2_icon_url": "staff.webp"
   },
   {
     "class": "Fury",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
+    "weapon1_icon_url": "crossbow.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Gladiator",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
+    "weapon2_icon_url": "greatsword.webp"
   },
   {
     "class": "Impaler",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Longbow",
-    "weapon2_icon_url": "/assets/weapons/longbow.webp"
+    "weapon2_icon_url": "longbow.webp"
   },
   {
     "class": "Infiltrator",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "/assets/weapons/longbow.webp",
+    "weapon1_icon_url": "longbow.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Invocator",
     "weapon1": "Staff",
-    "weapon1_icon_url": "/assets/weapons/staff.webp",
+    "weapon1_icon_url": "staff.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Liberator",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "/assets/weapons/longbow.webp",
+    "weapon1_icon_url": "longbow.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "/assets/weapons/staff.webp"
+    "weapon2_icon_url": "staff.webp"
   },
   {
     "class": "Outrider",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
+    "weapon1_icon_url": "crossbow.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
+    "weapon2_icon_url": "greatsword.webp"
   },
   {
     "class": "Paladin",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
+    "weapon1_icon_url": "greatsword.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Raider",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
+    "weapon1_icon_url": "crossbow.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "/assets/weapons/sword.webp"
+    "weapon2_icon_url": "sword.webp"
   },
   {
     "class": "Ranger",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "/assets/weapons/longbow.webp",
+    "weapon1_icon_url": "longbow.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
+    "weapon2_icon_url": "greatsword.webp"
   },
   {
     "class": "Ravager",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
+    "weapon1_icon_url": "greatsword.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Scorpion",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
+    "weapon1_icon_url": "crossbow.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Scout",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "/assets/weapons/longbow.webp",
+    "weapon1_icon_url": "longbow.webp",
     "weapon2": "Crossbow",
-    "weapon2_icon_url": "/assets/weapons/crossbow.webp"
+    "weapon2_icon_url": "crossbow.webp"
   },
   {
     "class": "Seeker",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "/assets/weapons/longbow.webp",
+    "weapon1_icon_url": "longbow.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Sentinel",
     "weapon1": "Staff",
-    "weapon1_icon_url": "/assets/weapons/staff.webp",
+    "weapon1_icon_url": "staff.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
+    "weapon2_icon_url": "greatsword.webp"
   },
   {
     "class": "Shadowdancer",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Spellblade",
     "weapon1": "Staff",
-    "weapon1_icon_url": "/assets/weapons/staff.webp",
+    "weapon1_icon_url": "staff.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "/assets/weapons/daggers.webp"
+    "weapon2_icon_url": "daggers.webp"
   },
   {
     "class": "Steelheart",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "/assets/weapons/sword.webp"
+    "weapon2_icon_url": "sword.webp"
   },
   {
     "class": "Templar",
     "weapon1": "Sword",
-    "weapon1_icon_url": "/assets/weapons/sword.webp",
+    "weapon1_icon_url": "sword.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Voidlance",
     "weapon1": "Spear",
-    "weapon1_icon_url": "/assets/weapons/spear.webp",
+    "weapon1_icon_url": "spear.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "/assets/weapons/wand.webp"
+    "weapon2_icon_url": "wand.webp"
   },
   {
     "class": "Warden",
     "weapon1": "Sword",
-    "weapon1_icon_url": "/assets/weapons/sword.webp",
+    "weapon1_icon_url": "sword.webp",
     "weapon2": "Longbow",
-    "weapon2_icon_url": "/assets/weapons/longbow.webp"
+    "weapon2_icon_url": "longbow.webp"
   }
 ]

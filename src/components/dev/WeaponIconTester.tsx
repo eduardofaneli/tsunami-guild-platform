@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getAssetPath, AssetType } from '../../services/assetService';
+import { getAssetPath, ASSET_TYPES } from '../../services/assetService';
 
 const TesterContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -117,7 +117,7 @@ const WeaponIconTester = () => {
           <WeaponCard key={weapon}>
             <WeaponIconContainer>
               <WeaponImage 
-                src={getAssetPath(`${weapon.toLowerCase()}.webp`, AssetType.WEAPONS)}
+                src={getAssetPath(`${weapon.toLowerCase()}.webp`, ASSET_TYPES.WEAPONS)}
                 alt={weapon}
                 onLoad={() => handleImageLoad(weapon)}
                 onError={() => handleImageError(weapon)}

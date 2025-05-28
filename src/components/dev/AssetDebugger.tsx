@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { commonAssets, getAssetPath, AssetType, getBasePath } from '../../services/assetService';
+import { commonAssets, getAssetPath, ASSET_TYPES, getBasePath } from '../../services/assetService';
 
 const Container = styled.div`
   background: rgba(0, 0, 0, 0.9);
@@ -102,9 +102,9 @@ const AssetDebugger: React.FC = () => {
   const assetTests = [
     { name: 'Favicon', path: commonAssets.logo() },
     { name: 'Discord', path: commonAssets.discord() },
-    { name: 'Sword', path: getAssetPath('sword.webp', AssetType.WEAPONS) },
-    { name: 'Staff', path: getAssetPath('staff.webp', AssetType.WEAPONS) },
-    { name: 'Absolute Path', path: getAssetPath('/assets/weapons/spear.webp', AssetType.WEAPONS) }
+    { name: 'Sword', path: getAssetPath('sword.webp', ASSET_TYPES.WEAPONS) },
+    { name: 'Staff', path: getAssetPath('staff.webp', ASSET_TYPES.WEAPONS) },
+    { name: 'Absolute Path', path: getAssetPath('/assets/weapons/spear.webp', ASSET_TYPES.DATA) }
   ];
   
   return (
