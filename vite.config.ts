@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
+  // Usar sempre o base path para facilitar o desenvolvimento e testes
   const base = isProduction ? '/tsunami-guild-platform/' : '/'
   
   return {
@@ -23,6 +24,7 @@ export default defineConfig(({ mode }) => {
           }
         }
       }
-    }
+    },
+    // Lidar com a navegação SPA é feito através do Vite Plugin ao invés de configuração server e preview
   }
 })

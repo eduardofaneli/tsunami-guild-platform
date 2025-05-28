@@ -72,7 +72,17 @@ export const getAssetPath = (path: string, type: AssetType): string => {
   
   // Para paths completos com /assets/ já incluído
   if (cleanPath.includes('/assets/') || cleanPath.startsWith('assets/')) {
-    const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+    // Normalizar o caminho para garantir formatação consistente
+    let normalizedPath = cleanPath;
+    if (!normalizedPath.startsWith('/')) {
+      normalizedPath = `/${normalizedPath}`;
+    }
+    
+    // Evitar dupla inclusão do basePath se já estiver presente
+    if (normalizedPath.includes(config.basePath)) {
+      return normalizedPath;
+    }
+    
     return `${config.basePath}${normalizedPath}`;
   }
   
@@ -83,6 +93,9 @@ export const getAssetPath = (path: string, type: AssetType): string => {
   
   // Type assertion to ensure TypeScript doesn't complain about index access
   const folderPath = config.assetFolders[type as keyof typeof config.assetFolders];
+  
+  // Log para depuração
+  console.log(`Asset path: ${config.basePath}${folderPath}/${cleanPath}`);
   return `${config.basePath}${folderPath}/${cleanPath}`;
 };
 
@@ -99,7 +112,8 @@ export const getBasePath = (): string => {
  * Helper for common assets
  */
 export const commonAssets = {
-  logo: () => getAssetPath('fav-icon.png', ASSET_TYPES.ICONS),
+  logo: () => `${config.basePath}/fav-icon.png`,
+  discord: () => `${config.basePath}/discord.svg`,
   classes: () => getAssetPath('classes_tl.json', ASSET_TYPES.DATA),
   weaponIcon: (weaponName: string) => getAssetPath(`${weaponName.toLowerCase()}.webp`, ASSET_TYPES.WEAPONS)
 };

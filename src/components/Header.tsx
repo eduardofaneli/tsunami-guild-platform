@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Users, Mail, FileText, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { commonAssets } from '../services/assetService'
 
 const HeaderContainer = styled(motion.header)`
   position: fixed;
@@ -335,7 +336,7 @@ const Header = () => {
       >
         <Nav>
           <Logo onClick={scrollToTop}>
-            <LogoIcon src="/fav-icon.png" />
+            <LogoIcon src={commonAssets.logo()} />
             TSUNAMI
           </Logo>
           
@@ -387,7 +388,7 @@ const Header = () => {
           >
             <MobileMenuHeader>
               <MobileMenuLogo onClick={scrollToTop}>
-                <LogoIcon src="/fav-icon.png"/>
+                <LogoIcon src={commonAssets.logo()}/>
                 TSUNAMI
               </MobileMenuLogo>
               <MobileMenuCloseButton

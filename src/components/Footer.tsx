@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { Heart, ExternalLink, Github } from 'lucide-react'
+import { commonAssets } from '../services/assetService'
 
 const FooterSection = styled.footer`
   background: ${props => props.theme.colors.background.secondary};
@@ -236,7 +237,7 @@ const Footer = () => {
         <FooterContent>
           <FooterSection1>
             <Logo>
-              <LogoIcon src="/fav-icon.png" />
+              <LogoIcon src={commonAssets.logo()} />
               TSUNAMI
             </Logo>
             <Description>
@@ -267,6 +268,13 @@ const Footer = () => {
                   Discord <ExternalLink />
                 </FooterLink>
               </li>
+              {import.meta.env.DEV && (
+                <li>
+                  <FooterLink href="/debug">
+                    Debug Tools
+                  </FooterLink>
+                </li>
+              )}
             </LinksList>
           </QuickLinks>
 
@@ -318,7 +326,7 @@ const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >              
-              <LogoIcon src="/discord.svg" />
+              <LogoIcon src={commonAssets.discord()} />
             </SocialLink>
 
             <SocialLink
@@ -327,7 +335,7 @@ const Footer = () => {
               whileTap={{ scale: 0.9 }}
               style={{ cursor: 'pointer' }}
             >
-              <LogoIcon src="/fav-icon.png" />
+              <LogoIcon src={commonAssets.logo()} />
             </SocialLink>
           </SocialLinks>
         </BottomSection>

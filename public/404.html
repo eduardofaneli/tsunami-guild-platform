@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecionando...</title>
+  <script>
+    // Obter a URL de entrada
+    const segmentCount = 1;
+    const baseUrl = "/tsunami-guild-platform"; // Altere para o seu repositório
+    const l = window.location;
+    
+    // Verificar se é uma URL para a página de debug
+    if (l.pathname.includes('/debug')) {
+      localStorage.setItem('debugRedirect', true);
+    }
+    
+    // Construir a URL de redirecionamento para a página principal
+    const redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      baseUrl + l.pathname.split('/').slice(segmentCount).join('/') + l.search;
+      
+    // Redirecionar
+    window.location.replace(redirectUrl);
+  </script>
+</head>
+<body>
+  <h1>Redirecionando...</h1>
+  <p>Se você não for redirecionado automaticamente, <a id="redirect-link" href="#">clique aqui</a>.</p>
+  
+  <script>
+    document.getElementById('redirect-link').setAttribute('href', redirectUrl);
+  </script>
+</body>
+</html>
