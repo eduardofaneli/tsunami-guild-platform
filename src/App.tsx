@@ -1,12 +1,14 @@
-import styled, { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from './styles/GlobalStyles'
+import { theme } from './styles/theme'
+import styled from 'styled-components'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Hero from './components/Hero'
 import About from './components/About'
 import Contact from './components/Contact'
 import ApplicationForm from './components/ApplicationForm'
-import Footer from './components/Footer'
-import GlobalStyles from './styles/GlobalStyles'
-import { theme } from './styles/theme'
+
 import useDynamicTitle from './hooks/useDynamicTitle'
 
 const AppContainer = styled.div`
@@ -27,7 +29,6 @@ const Main = styled.main`
 `
 
 function App() {
-  // Hook para título dinâmico
   useDynamicTitle()
 
   return (

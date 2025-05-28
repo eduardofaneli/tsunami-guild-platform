@@ -1,6 +1,59 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { ChevronDown, Search } from 'lucide-react'
+import { commonAssets, getAssetPath, AssetType } from '../services/assetService'
+
+// Componente para renderizar a imagem da arma com fallback
+interface WeaponImageProps {
+  src: string;
+  alt: string;
+}
+
+const WeaponImage: React.FC<WeaponImageProps> = ({ src, alt }) => {
+  const [error, setError] = useState(false);
+  
+  // Cores de armas para fallback
+  const weaponColors: Record<string, string> = {
+    'Sword': '#e57373',
+    'Daggers': '#9575cd',
+    'Staff': '#4fc3f7',
+    'Wand': '#81c784',
+    'Spear': '#ffd54f',
+    'Greatsword': '#ff8a65',
+    'Longbow': '#7986cb',
+    'Crossbow': '#4db6ac'
+  };
+  
+  if (error) {
+    const backgroundColor = weaponColors[alt] || '#9e9e9e';
+    return (
+      <div 
+        style={{ 
+          width: '100%', 
+          height: '100%', 
+          backgroundColor,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '10px',
+          color: 'white',
+          borderRadius: '3px'
+        }}
+        title={alt}
+      >
+        {alt.charAt(0)}
+      </div>
+    );
+  }
+  
+  return (
+    <img 
+      src={src} 
+      alt={alt} 
+      onError={() => setError(true)}
+    />
+  );
+};
 
 interface ClassItem {
   class: string
@@ -228,7 +281,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await fetch('/classes_tl.json')
+        const response = await fetch(commonAssets.classes())
         if (!response.ok) {
           throw new Error('Falha ao carregar dados de classes')
         }
@@ -321,10 +374,16 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
             <>
               <ClassIconsContainer>
                 <WeaponIcon>
-                  <img src={selectedClass.weapon1_icon_url} alt={selectedClass.weapon1} />
+                  <WeaponImage 
+                    src={getAssetPath(selectedClass.weapon1_icon_url, AssetType.WEAPONS)} 
+                    alt={selectedClass.weapon1} 
+                  />
                 </WeaponIcon>
                 <WeaponIcon>
-                  <img src={selectedClass.weapon2_icon_url} alt={selectedClass.weapon2} />
+                  <WeaponImage 
+                    src={getAssetPath(selectedClass.weapon2_icon_url, AssetType.WEAPONS)} 
+                    alt={selectedClass.weapon2} 
+                  />
                 </WeaponIcon>
               </ClassIconsContainer>
               <ClassName>{selectedClass.class}</ClassName>
@@ -363,10 +422,16 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
               >
                 <ClassIconsContainer>
                   <WeaponIcon>
-                    <img src={classItem.weapon1_icon_url} alt={classItem.weapon1} />
+                    <WeaponImage 
+                      src={getAssetPath(classItem.weapon1_icon_url, AssetType.WEAPONS)} 
+                      alt={classItem.weapon1} 
+                    />
                   </WeaponIcon>
                   <WeaponIcon>
-                    <img src={classItem.weapon2_icon_url} alt={classItem.weapon2} />
+                    <WeaponImage 
+                      src={getAssetPath(classItem.weapon2_icon_url, AssetType.WEAPONS)} 
+                      alt={classItem.weapon2} 
+                    />
                   </WeaponIcon>
                 </ClassIconsContainer>
                 <ClassName>{classItem.class}</ClassName>

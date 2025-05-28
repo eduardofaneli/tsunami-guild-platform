@@ -2,197 +2,197 @@
   {
     "class": "Battleweaver",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp",
+    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp"
+    "weapon2_icon_url": "/assets/weapons/staff.webp"
   },
   {
     "class": "Berserker",
     "weapon1": "Sword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp",
+    "weapon1_icon_url": "/assets/weapons/sword.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Cavalier",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Crossbow",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp"
+    "weapon2_icon_url": "/assets/weapons/crossbow.webp"
   },
   {
     "class": "Crusader",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp",
+    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp"
+    "weapon2_icon_url": "/assets/weapons/sword.webp"
   },
   {
     "class": "Darkblighter",
     "weapon1": "Daggers",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp",
+    "weapon1_icon_url": "/assets/weapons/daggers.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Disciple",
     "weapon1": "Sword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp",
+    "weapon1_icon_url": "/assets/weapons/sword.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp"
+    "weapon2_icon_url": "/assets/weapons/staff.webp"
   },
   {
     "class": "Eradicator",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp"
+    "weapon2_icon_url": "/assets/weapons/staff.webp"
   },
   {
     "class": "Fury",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp",
+    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Gladiator",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp"
+    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
   },
   {
     "class": "Impaler",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Longbow",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp"
+    "weapon2_icon_url": "/assets/weapons/longbow.webp"
   },
   {
     "class": "Infiltrator",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp",
+    "weapon1_icon_url": "/assets/weapons/longbow.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Invocator",
     "weapon1": "Staff",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp",
+    "weapon1_icon_url": "/assets/weapons/staff.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Liberator",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp",
+    "weapon1_icon_url": "/assets/weapons/longbow.webp",
     "weapon2": "Staff",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp"
+    "weapon2_icon_url": "/assets/weapons/staff.webp"
   },
   {
     "class": "Outrider",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp",
+    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp"
+    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
   },
   {
     "class": "Paladin",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp",
+    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Raider",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp",
+    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp"
+    "weapon2_icon_url": "/assets/weapons/sword.webp"
   },
   {
     "class": "Ranger",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp",
+    "weapon1_icon_url": "/assets/weapons/longbow.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp"
+    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
   },
   {
     "class": "Ravager",
     "weapon1": "Greatsword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp",
+    "weapon1_icon_url": "/assets/weapons/greatsword.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Scorpion",
     "weapon1": "Crossbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp",
+    "weapon1_icon_url": "/assets/weapons/crossbow.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Scout",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp",
+    "weapon1_icon_url": "/assets/weapons/longbow.webp",
     "weapon2": "Crossbow",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/crossbow.webp"
+    "weapon2_icon_url": "/assets/weapons/crossbow.webp"
   },
   {
     "class": "Seeker",
     "weapon1": "Longbow",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp",
+    "weapon1_icon_url": "/assets/weapons/longbow.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Sentinel",
     "weapon1": "Staff",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp",
+    "weapon1_icon_url": "/assets/weapons/staff.webp",
     "weapon2": "Greatsword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/greatsword.webp"
+    "weapon2_icon_url": "/assets/weapons/greatsword.webp"
   },
   {
     "class": "Shadowdancer",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Spellblade",
     "weapon1": "Staff",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/staff.webp",
+    "weapon1_icon_url": "/assets/weapons/staff.webp",
     "weapon2": "Daggers",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/daggers.webp"
+    "weapon2_icon_url": "/assets/weapons/daggers.webp"
   },
   {
     "class": "Steelheart",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Sword",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp"
+    "weapon2_icon_url": "/assets/weapons/sword.webp"
   },
   {
     "class": "Templar",
     "weapon1": "Sword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp",
+    "weapon1_icon_url": "/assets/weapons/sword.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Voidlance",
     "weapon1": "Spear",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/spear.webp",
+    "weapon1_icon_url": "/assets/weapons/spear.webp",
     "weapon2": "Wand",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/wand.webp"
+    "weapon2_icon_url": "/assets/weapons/wand.webp"
   },
   {
     "class": "Warden",
     "weapon1": "Sword",
-    "weapon1_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/sword.webp",
+    "weapon1_icon_url": "/assets/weapons/sword.webp",
     "weapon2": "Longbow",
-    "weapon2_icon_url": "https://eduardofaneli.github.io/cdn-assets/images/tl/weapons/longbow.webp"
+    "weapon2_icon_url": "/assets/weapons/longbow.webp"
   }
 ]

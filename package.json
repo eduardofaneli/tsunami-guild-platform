@@ -9,7 +9,8 @@
     "build:gh-pages": "tsc -b && vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
-    "preview:gh-pages": "vite preview --base=/tsunami-guild-platform/"
+    "preview:gh-pages": "vite preview --base=/tsunami-guild-platform/",
+    "copy-weapon-assets": "powershell -Command \"New-Item -ItemType Directory -Force -Path ./dist/assets/weapons; Copy-Item -Path ./public/assets/weapons/* -Destination ./dist/assets/weapons/ -Force\""
   },
   "dependencies": {
     "@types/styled-components": "^5.1.34",

@@ -256,13 +256,17 @@ const ApplicationForm = () => {
     reset
   } = useForm<FormData>()
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     setIsSubmitting(true)
     
     // Simular envio do formulário
     await new Promise(resolve => setTimeout(resolve, 2000))
     
-    console.log('Dados do formulário:', data)
+    // Em produção, enviaria os dados do formulário para o backend
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Dados do formulário:', formData);
+    }
+    
     setIsSubmitted(true)
     setIsSubmitting(false)
     reset()

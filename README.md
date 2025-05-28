@@ -43,6 +43,10 @@ pnpm dev
 # Compile para produção
 pnpm build
 
+# Build para GitHub Pages
+pnpm build:gh-pages
+pnpm copy-weapon-assets # Copia os assets de armas para o build
+
 # Preview da build
 pnpm preview
 ```
@@ -132,6 +136,15 @@ padding: 16px;
 ## 📄 Licença
 
 Este projeto é licenciado sob a MIT License. Veja o arquivo `LICENSE` para detalhes.
+
+## 🖼️ Gerenciamento de Assets
+
+O projeto utiliza um sistema centralizado para gerenciar caminhos de assets entre ambientes de desenvolvimento e produção. Veja [`ASSET_PATHS.md`](ASSET_PATHS.md) para mais detalhes sobre:
+
+- Estrutura de diretórios de assets
+- Como usar o `assetService.ts`
+- Configuração de base path
+- Helper functions para assets comuns
 
 ## 🌊 Junte-se à TSUNAMI!
 
