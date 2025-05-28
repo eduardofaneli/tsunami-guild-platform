@@ -13,14 +13,14 @@ const HeroSection = styled.section`
     radial-gradient(circle at 80% 20%, rgba(76, 154, 255, 0.3) 0%, transparent 50%),
     linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
   overflow: hidden;
-  padding-top: 88px; /* espaço para o header fixo */
+  padding-top: calc(100px + env(safe-area-inset-top)); /* Increased base padding and added safe area */
 
   @media (max-width: ${props => props.theme.breakpoints.md}) {
-    padding-top: 64px;
+    padding-top: calc(80px + env(safe-area-inset-top)); /* Adjusted for medium screens */
   }
 
   @media (max-width: ${props => props.theme.breakpoints.sm}) {
-    padding-top: 48px;
+    padding-top: calc(70px + env(safe-area-inset-top)); /* Adjusted for small screens */
   }
 `
 

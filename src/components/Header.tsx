@@ -13,6 +13,7 @@ const HeaderContainer = styled(motion.header)`
   background: rgba(15, 15, 35, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid ${props => props.theme.colors.border};
+  padding-top: env(safe-area-inset-top);
 `
 
 const Nav = styled.nav`
