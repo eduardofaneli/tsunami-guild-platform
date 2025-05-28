@@ -14,8 +14,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-jobs:
+jobs:  
   build:
+    env:
+      VITE_DISCORD_WEBHOOK_URL: ${{ vars.VITE_DISCORD_WEBHOOK_URL }}
+      VITE_DISCORD_ROLE_ID: ${{ vars.VITE_DISCORD_ROLE_ID }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
