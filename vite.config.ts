@@ -3,10 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const isVercelBuild = process.env.VERCEL_ENV === 'production' ||
-    process.env.VERCEL_ENV === 'preview' ||
-    process.env.VERCEL_ENV === 'development'; // Para Vercel CLI local
-
+  const isVercelBuild = process.env.VITE_DEPLOY_PLATFORM === 'vercel'
+  
   let basePath = '/'; // Default para desenvolvimento local
 
   if (isVercelBuild) {
