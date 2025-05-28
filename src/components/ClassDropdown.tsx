@@ -3,6 +3,13 @@ import styled from 'styled-components'
 import { ChevronDown, Search } from 'lucide-react'
 import { commonAssets, getAssetPath, AssetType } from '../services/assetService'
 
+// Interface para integração com ApplicationFormData
+export interface ClassInfo {
+  className: string;
+  weapon1: string;
+  weapon2: string;
+}
+
 // Componente para renderizar a imagem da arma com fallback
 interface WeaponImageProps {
   src: string;
@@ -64,10 +71,10 @@ interface ClassItem {
 }
 
 interface ClassDropdownProps {
-  value?: string
-  onChange: (className: string) => void
-  isSecondary?: boolean
-  error?: string
+  value?: ClassInfo | null;
+  onChange: (classInfo: ClassInfo | null) => void;
+  isSecondary?: boolean;
+  error?: string;
 }
 
 const DropdownContainer = styled.div`
@@ -292,7 +299,12 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
         
         // Atualizar a classe selecionada se um valor foi passado
         if (value) {
-          const selectedClass = data.find((c: ClassItem) => c.class === value)
+          // value é do tipo ClassInfo, comparar por className/weapon1/weapon2
+          const selectedClass = data.find((c: ClassItem) =>
+            c.class === value.className &&
+            c.weapon1 === value.weapon1 &&
+            c.weapon2 === value.weapon2
+          );
           if (selectedClass) {
             setSelectedClass(selectedClass)
           }
@@ -323,28 +335,35 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
   // Atualizar classe selecionada quando o valor mudar externamente
   useEffect(() => {
     if (value) {
-      const selectedClass = classes.find(c => c.class === value)
+      const selectedClass = classes.find(
+        c =>
+          c.class === value.className &&
+          c.weapon1 === value.weapon1 &&
+          c.weapon2 === value.weapon2
+      );
       if (selectedClass) {
-        setSelectedClass(selectedClass)
-      } else if (value === 'none') {
-        setSelectedClass(null)
+        setSelectedClass(selectedClass);
       }
     } else {
-      setSelectedClass(null)
+      setSelectedClass(null);
     }
-  }, [value, classes])
+  }, [value, classes]);
 
   const handleClassSelect = (classItem: ClassItem) => {
-    setSelectedClass(classItem)
-    onChange(classItem.class)
-    setIsOpen(false)
-  }
+    setSelectedClass(classItem);
+    onChange({
+      className: classItem.class,
+      weapon1: classItem.weapon1,
+      weapon2: classItem.weapon2,
+    });
+    setIsOpen(false);
+  };
 
   const handleSelectNone = () => {
-    setSelectedClass(null)
-    onChange('none')
-    setIsOpen(false)
-  }
+    setSelectedClass(null);
+    onChange(null);
+    setIsOpen(false);
+  };
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -389,7 +408,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
               <ClassName>{selectedClass.class}</ClassName>
               <WeaponsInfo>({selectedClass.weapon1} | {selectedClass.weapon2})</WeaponsInfo>
             </>
-          ) : value === 'none' ? (
+          ) : !value ? (
             <EmptySelectionText>Sem classe secundária</EmptySelectionText>
           ) : (
             <EmptySelectionText>{placeholderText}</EmptySelectionText>
@@ -441,7 +460,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
             
             {isSecondary && (
               <DropdownItem 
-                isSelected={value === 'none'}
+                isSelected={!value}
                 onClick={handleSelectNone}
               >
                 <ClassName>Sem classe secundária</ClassName>

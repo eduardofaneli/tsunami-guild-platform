@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { Send, User, GamepadIcon, MessageSquare, Clock, Languages } from 'lucide-react'
 import { useState } from 'react'
 import ClassDropdown from './ClassDropdown'
@@ -229,19 +229,30 @@ const SuccessMessage = styled(motion.div)`
   }
 `
 
-interface FormData {
-  playerName: string
-  discordTag: string
-  language: string
-  age: string
-  level: string
-  gearScore: string
-  primaryClass: string
-  secondaryClass: string
-  experience: string
-  playtime: string
-  motivation: string
-  previousGuilds: string
+interface ClassInfo {
+  className: string;
+  weapon1: string;
+  weapon2: string;
+}
+
+export interface PreviousGuild {
+  name: string;
+  reason?: string;
+}
+
+export interface ApplicationFormData {
+  playerName: string;
+  discordTag: string;
+  language: string;
+  age: number;
+  playtime: string;
+  gearScore: number;
+  primaryClass: ClassInfo;
+  secondaryClass?: ClassInfo;
+  previousGuilds: PreviousGuild[];
+  experience: string;
+  motivation?: string;
+  termsAccepted?: boolean;
 }
 
 const ApplicationForm = () => {
@@ -254,17 +265,44 @@ const ApplicationForm = () => {
     control,
     formState: { errors },
     reset
-  } = useForm<FormData>()
+  } = useForm<ApplicationFormData>({
+    defaultValues: {
+      previousGuilds: [{ name: '' }],
+    },
+  })
 
-  const onSubmit = async (formData: FormData) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'previousGuilds',
+    rules: {
+      validate: (value) => (value && value.length > 0 && value.some(g => g.name && g.name.trim().length > 0)) || 'Adicione pelo menos uma guild com nome',
+    },
+  })
+
+  const onSubmit = async (formData: ApplicationFormData) => {
     setIsSubmitting(true)
 
-    // Simular envio do formulário
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // URL do webhook do Discord (coloque sua URL real aqui ou em uma env var)
+    const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL || '';
+    const roleId = import.meta.env.VITE_DISCORD_ROLE_ID || '';
 
-    // Em produção, enviaria os dados do formulário para o backend
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('Dados do formulário:', formData);
+    if (webhookUrl) {
+      try {
+        const { sendDiscordApplication } = await import('../services/sendDiscordApplication');
+        await sendDiscordApplication(formData, webhookUrl, roleId);
+      } catch (err) {
+        // fallback para log local
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('Erro ao enviar para o Discord:', err);
+          console.log('Dados do formulário:', formData);
+        }
+      }
+    } else {
+      // fallback para log local
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Webhook do Discord não configurado. Veja .env.local');
+        console.log('Dados do formulário:', formData);
+      }
     }
 
     setIsSubmitted(true)
@@ -402,9 +440,25 @@ const ApplicationForm = () => {
                   </Label>
                   <Input
                     type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    min="0"
+                    onKeyDown={e => {
+                      if (
+                        !(
+                          (e.key >= '0' && e.key <= '9') ||
+                          ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
+                        )
+                      ) {
+                        e.preventDefault();
+                      }
+                    }}
                     {...register('age', {
                       required: 'Idade é obrigatória',
-                      min: { value: 18, message: 'Idade mínima: 18 anos' }
+                      min: { value: 18, message: 'Idade mínima: 18 anos' },
+                      max: { value: 90, message: 'Idade máxima: 90 anos' },
+                      valueAsNumber: true,
+                      validate: value => Number.isInteger(value) || 'Digite apenas números inteiros'
                     })}
                     placeholder="Sua idade"
                   />
@@ -422,14 +476,12 @@ const ApplicationForm = () => {
                     {...register('playtime', { required: 'Disponibilidade é obrigatória' })}
                   >
                     <option value="">Selecione sua disponibilidade</option>
-                    <option value="casual">Casual (2-3x por semana)</option>
-                    <option value="regular">Regular (4-5x por semana)</option>
-                    <option value="hardcore">Hardcore (todos os dias)</option>
+                    <option value="Casual (2-3x por semana)">Casual (2-3x por semana)</option>
+                    <option value="Regular (4-5x por semana)">Regular (4-5x por semana)</option>
+                    <option value="Hardcore (todos os dias)">Hardcore (todos os dias)</option>
                   </Select>
                   {errors.playtime && <ErrorMessage>{errors.playtime.message}</ErrorMessage>}
                 </FormGroup>
-
-
 
                 <FormGroup>
                   <Label>
@@ -438,9 +490,25 @@ const ApplicationForm = () => {
                   </Label>
                   <Input
                     type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    min="0"
+                    onKeyDown={e => {
+                      if (
+                        !(
+                          (e.key >= '0' && e.key <= '9') ||
+                          ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
+                        )
+                      ) {
+                        e.preventDefault();
+                      }
+                    }}
                     {...register('gearScore', {
                       required: 'Gear Score é obrigatório',
-                      min: { value: 2500, message: 'Gear Score mínimo: 2500' }
+                      min: { value: 4000, message: 'Gear Score mínimo: 4000' },
+                      max: { value: 9999, message: 'Máximo de 4 dígitos' },
+                      valueAsNumber: true,
+                      validate: value => Number.isInteger(value) || 'Digite apenas números inteiros'
                     })}
                     placeholder="Seu gear score"
                   />
@@ -493,13 +561,36 @@ const ApplicationForm = () => {
                   <User />
                   Guilds Anteriores *
                 </Label>
-                <TextArea
-                  {...register('previousGuilds', {
-                    required: "É obrigatório informar no mínimo a última guild",
-                    minLength: { value: 20, message: 'Mínimo 20 caracteres' }
-                  })}
-                  placeholder="Informe suas guilds anteriores e o motivo de ter saído (opcional)."
-                />
+                {fields.map((field, idx) => (
+                  <div key={field.id} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 8, flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center', width: '100%' }}>
+                      <Input
+                        style={{ flex: 2 }}
+                        {...register(`previousGuilds.${idx}.name` as const, {
+                          required: 'Nome da guild é obrigatório',
+                          minLength: { value: 2, message: 'Mínimo 2 caracteres' },
+                        })}
+                        placeholder="Nome da guild"
+                      />
+                      <Input
+                        style={{ flex: 3 }}
+                        {...register(`previousGuilds.${idx}.reason` as const)}
+                        placeholder="Motivo da saída (opcional)"
+                      />
+                      {fields.length > 1 && (
+                        <button type="button" onClick={() => remove(idx)} style={{ background: 'none', border: 'none', color: '#e57373', fontSize: 20, cursor: 'pointer' }} title="Remover">×</button>
+                      )}
+                    </div>
+                    {/* Mensagem de erro individual do nome da guild */}
+                    {errors.previousGuilds && Array.isArray(errors.previousGuilds) && errors.previousGuilds[idx]?.name && (
+                      <ErrorMessage>{errors.previousGuilds[idx]?.name?.message as string}</ErrorMessage>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={() => append({ name: '' })} style={{ marginTop: 4, background: '#222', color: '#fff', border: 'none', borderRadius: 4, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>
+                  + Adicionar Guild
+                </button>
+                {errors.previousGuilds && <ErrorMessage>{(errors.previousGuilds as any)?.message}</ErrorMessage>}
               </FormGroup>
 
               <FormGroup>
@@ -510,7 +601,7 @@ const ApplicationForm = () => {
                 <TextArea
                   {...register('experience', {
                     required: 'Experiência é obrigatória',
-                    minLength: { value: 50, message: 'Mínimo 50 caracteres' }
+                    minLength: { value: 20, message: 'Mínimo 20 caracteres' }
                   })}
                   placeholder="Descreva sua experiência em MMORPGs, outros jogos que jogou, tempo de experiência, etc."
                 />
