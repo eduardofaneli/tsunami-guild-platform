@@ -297,10 +297,11 @@ const Contact = () => {
               <ContactTitle>Horários de Atividade</ContactTitle>
               <ContactInfo>
                 {/* <strong>Raids:</strong> Terças e Quintas às 20:00<br /> */}
-                <strong>PvP:</strong> Todos os dias Horário Prime: 20:00 ~ 22:00<br />
-                <strong>ArchBoss:</strong> Quarta-Feira e Sábado às 20:00<br/>
-                <strong>Inter-Server:</strong> Sexta-Feira e Sábado das 21:30<br />
-                <strong>Suporte:</strong> Todos os dias das 18:00 às 23:00
+                <strong>PvP:</strong> Todos os dias Horário Prime: 20h - 22h<br />
+                <strong>ArchBoss:</strong> Quarta-Feira e Sábado às 20h<br/>
+                <strong>Inter-Server:</strong> Sexta-Feira e Sábado às 21h30<br />
+                <strong>Suporte:</strong> Todos os dias das 18h às 23h<br />
+                <strong>Discord:</strong> Sempre ativo, entre em contato a qualquer momento
               </ContactInfo>
               {/* <ContactButton
                 href="#application"

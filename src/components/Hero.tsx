@@ -13,6 +13,15 @@ const HeroSection = styled.section`
     radial-gradient(circle at 80% 20%, rgba(76, 154, 255, 0.3) 0%, transparent 50%),
     linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
   overflow: hidden;
+  padding-top: 88px; /* espaço para o header fixo */
+
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    padding-top: 64px;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.sm}) {
+    padding-top: 48px;
+  }
 `
 
 const Container = styled.div`
@@ -320,7 +329,7 @@ const Hero = () => {
                 <Clock />
               </StatIcon>
               <StatNumber>PRIME TIME</StatNumber>
-              <StatLabel>20:00 ~ 23:00</StatLabel>
+              <StatLabel>20h - 23h</StatLabel>
             </StatCard>
 
             <StatCard
