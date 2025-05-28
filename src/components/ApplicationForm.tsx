@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { useForm, Controller } from 'react-hook-form'
-import { Send, User, Mail, GamepadIcon, MessageSquare, Clock, Star, Languages } from 'lucide-react'
+import { Send, User, GamepadIcon, MessageSquare, Clock, Languages } from 'lucide-react'
 import { useState } from 'react'
 import ClassDropdown from './ClassDropdown'
 
