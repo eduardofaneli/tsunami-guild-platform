@@ -82,13 +82,13 @@ const DropdownContainer = styled.div`
   width: 100%;
 `
 
-const DropdownButton = styled.button<{ hasError?: boolean }>`
+const DropdownButton = styled.button<{ $hasError?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   background: rgba(26, 26, 58, 0.5);
-  border: 1px solid ${props => props.hasError ? props.theme.colors.error : props.theme.colors.border};
+  border: 1px solid ${props => props.$hasError ? props.theme.colors.error : props.theme.colors.border};
   border-radius: ${props => props.theme.borderRadius.md};
   padding: ${props => props.theme.spacing.md};
   color: ${props => props.theme.colors.text.primary};
@@ -99,20 +99,20 @@ const DropdownButton = styled.button<{ hasError?: boolean }>`
 
   &:focus {
     outline: none;
-    border-color: ${props => props.hasError ? props.theme.colors.error : props.theme.colors.primary};
-    box-shadow: 0 0 0 2px ${props => props.hasError ? 'rgba(255, 76, 76, 0.2)' : 'rgba(76, 154, 255, 0.2)'};
+    border-color: ${props => props.$hasError ? props.theme.colors.error : props.theme.colors.primary};
+    box-shadow: 0 0 0 2px ${props => props.$hasError ? 'rgba(255, 76, 76, 0.2)' : 'rgba(76, 154, 255, 0.2)'};
   }
 `
 
-const DropdownIcon = styled(ChevronDown)<{ isOpen: boolean }>`
+const DropdownIcon = styled(ChevronDown)<{ $isOpen: boolean }>`
   width: 18px;
   height: 18px;
   transition: transform ${props => props.theme.transitions.fast};
-  transform: ${props => props.isOpen ? 'rotate(180deg)' : 'rotate(0)'};
+  transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0)'};
   color: ${props => props.theme.colors.text.secondary};
 `
 
-const DropdownMenu = styled.div<{ isOpen: boolean }>`
+const DropdownMenu = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
@@ -123,9 +123,9 @@ const DropdownMenu = styled.div<{ isOpen: boolean }>`
   max-height: 300px;
   overflow-y: auto;
   z-index: 10;
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-  opacity: ${props => props.isOpen ? 1 : 0};
-  transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-10px)'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  opacity: ${props => props.$isOpen ? 1 : 0};
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-10px)'};
   transition: all ${props => props.theme.transitions.fast};
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   
@@ -183,14 +183,14 @@ const SearchIconStyled = styled(Search)`
   color: ${props => props.theme.colors.text.muted};
 `
 
-const DropdownItem = styled.div<{ isSelected: boolean }>`
+const DropdownItem = styled.div<{ $isSelected: boolean }>`
   display: flex;
   align-items: center;
   padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
   cursor: pointer;
   transition: background ${props => props.theme.transitions.fast};
-  background: ${props => props.isSelected ? 'rgba(76, 154, 255, 0.1)' : 'transparent'};
-  border-left: 3px solid ${props => props.isSelected ? props.theme.colors.primary : 'transparent'};
+  background: ${props => props.$isSelected ? 'rgba(76, 154, 255, 0.1)' : 'transparent'};
+  border-left: 3px solid ${props => props.$isSelected ? props.theme.colors.primary : 'transparent'};
 
   &:hover {
     background: rgba(76, 154, 255, 0.05);
@@ -395,7 +395,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
     <DropdownContainer ref={dropdownRef}>
       <DropdownButton
         onClick={toggleDropdown}
-        hasError={!!error}
+        $hasError={!!error}
         type="button"
       >
         <SelectedDisplay>
@@ -424,10 +424,10 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
             <EmptySelectionText>{placeholderText}</EmptySelectionText>
           )}
         </SelectedDisplay>
-        <DropdownIcon isOpen={isOpen} />
+        <DropdownIcon $isOpen={isOpen} />
       </DropdownButton>
       
-      <DropdownMenu isOpen={isOpen}>
+      <DropdownMenu $isOpen={isOpen}>
         <SearchBox>
           <SearchInput
             type="text"
@@ -447,7 +447,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
                 
               <DropdownItem 
                 key={classItem.class}
-                isSelected={selectedClass?.class === classItem.class}
+                $isSelected={selectedClass?.class === classItem.class}
                 onClick={() => handleClassSelect(classItem)}
               >
                 <ClassIconsContainer>
@@ -471,7 +471,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
             
             {isSecondary && (
               <DropdownItem 
-                isSelected={!value}
+                $isSelected={!value}
                 onClick={handleSelectNone}
               >
                 <ClassName>Sem classe secundária</ClassName>
