@@ -258,15 +258,15 @@ const ApplicationForm = () => {
 
   const onSubmit = async (formData: FormData) => {
     setIsSubmitting(true)
-    
+
     // Simular envio do formulário
     await new Promise(resolve => setTimeout(resolve, 2000))
-    
+
     // Em produção, enviaria os dados do formulário para o backend
     if (process.env.NODE_ENV !== 'production') {
       console.log('Dados do formulário:', formData);
     }
-    
+
     setIsSubmitted(true)
     setIsSubmitting(false)
     reset()
@@ -302,7 +302,7 @@ const ApplicationForm = () => {
           >
             <h3>Candidatura Enviada com Sucesso! 🎉</h3>
             <p>
-              Obrigado por se candidatar à Guild TSUNAMI! Nossa equipe analisará sua aplicação 
+              Obrigado por se candidatar à Guild TSUNAMI! Nossa equipe analisará sua aplicação
               e entraremos em contato através do Discord em até 48 horas.
             </p>
             <button
@@ -339,7 +339,7 @@ const ApplicationForm = () => {
           </SectionTitle>
 
           <Description variants={itemVariants}>
-            Pronto para se juntar à nossa elite? Preencha o formulário abaixo e nossa 
+            Pronto para se juntar à nossa elite? Preencha o formulário abaixo e nossa
             liderança avaliará sua candidatura. Seja honesto e detalhado em suas respostas.
           </Description>
 
@@ -352,7 +352,7 @@ const ApplicationForm = () => {
                     Nome do Jogador *
                   </Label>
                   <Input
-                    {...register('playerName', { 
+                    {...register('playerName', {
                       required: 'Nome do jogador é obrigatório',
                       minLength: { value: 3, message: 'Mínimo 3 caracteres' }
                     })}
@@ -367,7 +367,7 @@ const ApplicationForm = () => {
                     Discord Tag *
                   </Label>
                   <Input
-                    {...register('discordTag', { 
+                    {...register('discordTag', {
                       required: 'Discord tag é obrigatório',
                       pattern: { value: /^.+#\d{4}$/, message: 'Formato: Usuario#1234' }
                     })}
@@ -377,7 +377,7 @@ const ApplicationForm = () => {
                 </FormGroup>
               </FormRow>
 
-              <FormRow>              
+              <FormRow>
                 <FormGroup>
                   <Label>
                     <Languages />
@@ -402,7 +402,7 @@ const ApplicationForm = () => {
                   </Label>
                   <Input
                     type="number"
-                    {...register('age', { 
+                    {...register('age', {
                       required: 'Idade é obrigatória',
                       min: { value: 18, message: 'Idade mínima: 18 anos' }
                     })}
@@ -413,7 +413,7 @@ const ApplicationForm = () => {
               </FormRow>
 
               <FormRow>
-                 <FormGroup>
+                <FormGroup>
                   <Label>
                     <Clock />
                     Disponibilidade *
@@ -429,7 +429,7 @@ const ApplicationForm = () => {
                   {errors.playtime && <ErrorMessage>{errors.playtime.message}</ErrorMessage>}
                 </FormGroup>
 
-               
+
 
                 <FormGroup>
                   <Label>
@@ -438,7 +438,7 @@ const ApplicationForm = () => {
                   </Label>
                   <Input
                     type="number"
-                    {...register('gearScore', { 
+                    {...register('gearScore', {
                       required: 'Gear Score é obrigatório',
                       min: { value: 2500, message: 'Gear Score mínimo: 2500' }
                     })}
@@ -469,23 +469,37 @@ const ApplicationForm = () => {
                 </FormGroup>
               </div>
 
-                <FormGroup>
-                  <Label>
-                    <GamepadIcon />
-                    Classe Secundária
-                  </Label>
-                  <Controller
-                    name="secondaryClass"
-                    control={control}
-                    render={({ field }) => (
-                      <ClassDropdown
-                        value={field.value}
-                        onChange={field.onChange}
-                        isSecondary={true}
-                        error={errors.secondaryClass?.message}
-                      />
-                    )}
-                  />
+              <FormGroup>
+                <Label>
+                  <GamepadIcon />
+                  Classe Secundária
+                </Label>
+                <Controller
+                  name="secondaryClass"
+                  control={control}
+                  render={({ field }) => (
+                    <ClassDropdown
+                      value={field.value}
+                      onChange={field.onChange}
+                      isSecondary={true}
+                      error={errors.secondaryClass?.message}
+                    />
+                  )}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label>
+                  <User />
+                  Guilds Anteriores *
+                </Label>
+                <TextArea
+                  {...register('previousGuilds', {
+                    required: "É obrigatório informar no mínimo a última guild",
+                    minLength: { value: 20, message: 'Mínimo 20 caracteres' }
+                  })}
+                  placeholder="Informe suas guilds anteriores e o motivo de ter saído (opcional)."
+                />
               </FormGroup>
 
               <FormGroup>
@@ -494,7 +508,7 @@ const ApplicationForm = () => {
                   Experiência em MMORPGs *
                 </Label>
                 <TextArea
-                  {...register('experience', { 
+                  {...register('experience', {
                     required: 'Experiência é obrigatória',
                     minLength: { value: 50, message: 'Mínimo 50 caracteres' }
                   })}
@@ -506,28 +520,16 @@ const ApplicationForm = () => {
               <FormGroup>
                 <Label>
                   <MessageSquare />
-                  Por que quer se juntar à TSUNAMI? *
+                  Por que quer se juntar à TSUNAMI?
                 </Label>
                 <TextArea
-                  {...register('motivation', { 
-                    required: 'Motivação é obrigatória',
-                    minLength: { value: 50, message: 'Mínimo 50 caracteres' }
-                  })}
+                  {...register('motivation')}
                   placeholder="Conte-nos por que quer fazer parte da nossa guild e o que espera da experiência."
                 />
                 {errors.motivation && <ErrorMessage>{errors.motivation.message}</ErrorMessage>}
               </FormGroup>
 
-              <FormGroup>
-                <Label>
-                  <User />
-                  Guilds Anteriores
-                </Label>
-                <TextArea
-                  {...register('previousGuilds')}
-                  placeholder="Informe suas guilds anteriores e o motivo de ter saído (opcional)."
-                />
-              </FormGroup>
+
 
               <SubmitButton
                 type="submit"
