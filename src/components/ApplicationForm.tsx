@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { Send, User, Mail, GamepadIcon, MessageSquare, Clock, Star, Languages } from 'lucide-react'
 import { useState } from 'react'
+import ClassDropdown from './ClassDropdown'
 
 const ApplicationSection = styled.section`
   padding: ${props => props.theme.spacing['5xl']} 0;
@@ -76,6 +77,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${props => props.theme.spacing.xl};
+  
+  .classes-section {
+    display: flex;
+    flex-direction: column;
+    gap: ${props => props.theme.spacing.xl};
+  }
 `
 
 const FormRow = styled.div`
@@ -225,11 +232,12 @@ const SuccessMessage = styled(motion.div)`
 interface FormData {
   playerName: string
   discordTag: string
-  idioma: string
+  language: string
   age: string
   level: string
   gearScore: string
-  class: string
+  primaryClass: string
+  secondaryClass: string
   experience: string
   playtime: string
   motivation: string
@@ -243,6 +251,7 @@ const ApplicationForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     reset
   } = useForm<FormData>()
@@ -371,14 +380,15 @@ const ApplicationForm = () => {
                     Idioma *
                   </Label>
                   <Select
-                    {...register('class', { required: 'Classe é obrigatória' })}
+                    {...register('language', { required: 'Idioma é obrigatório' })}
                   >
                     <option value="">Selecione o idioma que você fala</option>
                     <option value="portugues">Português</option>
                     <option value="ingles">Inglês</option>
                     <option value="espanhol">Espanhol</option>
+                    <option value="multi">Multilingue</option>
                   </Select>
-                  {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
+                  {errors.language && <ErrorMessage>{errors.language.message}</ErrorMessage>}
                 </FormGroup>
 
                 <FormGroup>
@@ -434,51 +444,45 @@ const ApplicationForm = () => {
                 </FormGroup>
               </FormRow>
 
-              <FormRow>
+              <div className="classes-section">
                 <FormGroup>
                   <Label>
                     <GamepadIcon />
                     Classe Principal *
                   </Label>
-                  <Select
-                    {...register('class', { required: 'Classe é obrigatória' })}
-                  >
-                    <option value="">Selecione sua classe</option>
-                    <option value="berserker">Berserker</option>
-                    <option value="destroyer">Destroyer</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="dark-knight">Dark Knight</option>
-                    <option value="ranger">Ranger</option>
-                    <option value="arcane-mage">Arcane Mage</option>
-                    <option value="curse-weaver">Curse Weaver</option>
-                    <option value="sage">Sage</option>
-                  </Select>
-                  {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
+                  <Controller
+                    name="primaryClass"
+                    control={control}
+                    rules={{ required: 'Classe principal é obrigatória' }}
+                    render={({ field }) => (
+                      <ClassDropdown
+                        value={field.value}
+                        onChange={field.onChange}
+                        error={errors.primaryClass?.message}
+                      />
+                    )}
+                  />
                 </FormGroup>
+              </div>
 
-                 <FormGroup>
+                <FormGroup>
                   <Label>
                     <GamepadIcon />
-                    Classe Secundária *
+                    Classe Secundária
                   </Label>
-                  <Select
-                    {...register('class', { required: 'Classe é obrigatória' })}
-                  >
-                    <option value="">Selecione sua classe</option>
-                    <option value="berserker">Berserker</option>
-                    <option value="destroyer">Destroyer</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="dark-knight">Dark Knight</option>
-                    <option value="ranger">Ranger</option>
-                    <option value="arcane-mage">Arcane Mage</option>
-                    <option value="curse-weaver">Curse Weaver</option>
-                    <option value="sage">Sage</option>
-                  </Select>
-                  {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
-                </FormGroup>
-
-               
-              </FormRow>
+                  <Controller
+                    name="secondaryClass"
+                    control={control}
+                    render={({ field }) => (
+                      <ClassDropdown
+                        value={field.value}
+                        onChange={field.onChange}
+                        isSecondary={true}
+                        error={errors.secondaryClass?.message}
+                      />
+                    )}
+                  />
+              </FormGroup>
 
               <FormGroup>
                 <Label>
