@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize, reopened, closed, edited]
+    branches:
+      - main      
   workflow_dispatch:
 
 permissions:
@@ -14,8 +16,19 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-jobs:  
+jobs: 
+  merged:
+    name: merged
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          
+
   build:
+    name: build
+    needs: [ merged ]
     env:
       VITE_DISCORD_WEBHOOK_URL: ${{ vars.VITE_DISCORD_WEBHOOK_URL }}
       VITE_DISCORD_ROLE_ID: ${{ vars.VITE_DISCORD_ROLE_ID }}
