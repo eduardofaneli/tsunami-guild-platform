@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Waves, Users, Mail, FileText, Menu, X } from 'lucide-react'
+import { Users, Mail, FileText, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const HeaderContainer = styled(motion.header)`
@@ -47,7 +47,7 @@ const Logo = styled.div`
   }
 `
 
-const LogoIcon = styled(Waves)`
+const LogoIcon = styled.img`
   width: 32px;
   height: 32px;
   color: ${props => props.theme.colors.secondary};
@@ -335,7 +335,7 @@ const Header = () => {
       >
         <Nav>
           <Logo onClick={scrollToTop}>
-            <LogoIcon />
+            <LogoIcon src="/fav-icon.png" />
             TSUNAMI
           </Logo>
           
@@ -387,7 +387,7 @@ const Header = () => {
           >
             <MobileMenuHeader>
               <MobileMenuLogo onClick={scrollToTop}>
-                <LogoIcon />
+                <LogoIcon src="/fav-icon.png"/>
                 TSUNAMI
               </MobileMenuLogo>
               <MobileMenuCloseButton

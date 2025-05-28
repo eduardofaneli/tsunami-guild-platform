@@ -236,9 +236,9 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Nossa Missão</FeatureTitle>
               <FeatureDescription>
-                Dominar os territórios de Throne and Liberty através de estratégia, 
-                cooperação e habilidade. Buscamos ser a guild mais respeitada e temida 
-                do servidor, sempre mantendo nossos valores de honra e lealdade.
+                Jogar batalhar épicas JvJ e ZvZ no Throne and Liberty 
+                e qualquer jogo no futuro, 
+                através de estratégia, cooperação e habilidade coletiva e individual.          
               </FeatureDescription>
             </FeatureCard>
 
@@ -251,9 +251,7 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Nossa Comunidade</FeatureTitle>
               <FeatureDescription>
-                Somos mais que uma guild, somos uma família. Com mais de 60 membros 
-                ativos, oferecemos um ambiente acolhedor onde veteranos ajudam novatos 
-                e todos crescem juntos em direção à excelência.
+                Além de uma Guild competitiva, também somos nas horas vagas, um boteco virtual onde se reunimos para jogar conversa fora. Oferecemos um ambiente descontraído onde todos se divertem.
               </FeatureDescription>
             </FeatureCard>
 
@@ -266,8 +264,7 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Nossos Conquistas</FeatureTitle>
               <FeatureDescription>
-                Atualmente rankeados no TOP 6 do servidor, com PvP super ativo, todos os dias, brigando por BoomStone, mantendo sempre duas sobre nosso controle e mais de 500 vitórias em batalhas épicas. Nossa 
-                história é escrita com sangue, suor e glória.
+                Atualmente somos uma das TOP Guilds do servidor e temos atividades PvP todos os dias. Nossa história é escrita com sangue, suor, glória mas também temos risadas.                
               </FeatureDescription>
             </FeatureCard>
 
@@ -280,16 +277,15 @@ const About = () => {
               </FeatureIcon>
               <FeatureTitle>Atividades Regulares</FeatureTitle>
               <FeatureDescription>
-                Organizamos raids semanais, eventos de PvP, torneios internos e 
-                expedições para dungeons épicas. Sempre há algo acontecendo na 
-                TSUNAMI para manter todos nossos membros engajados e progredindo.
+                Organizamos eventos diários, eventos de PvE semanais, treinamentos internos e análises sempre em busca de estar no Meta Game. 
+                Sempre há algo acontecendo na TSUNAMI todo dia.
               </FeatureDescription>
             </FeatureCard>
           </Grid>
 
           <ValuesSection>
             <ValuesTitle variants={itemVariants}>
-              Nossos Valores
+              Nossos Diferenciais
             </ValuesTitle>
             
             <ValuesGrid>
@@ -300,9 +296,9 @@ const About = () => {
                 <ValueIcon>
                   <Shield />
                 </ValueIcon>
-                <ValueTitle>Lealdade</ValueTitle>
+                <ValueTitle>Organização</ValueTitle>
                 <ValueDescription>
-                  Protegemos nossos aliados e nunca abandonamos um companheiro de guild.
+                  Corremos atrás das melhores estruturas para dar conforto para o player fazer o que faz melhor, usar suas habilidades.
                 </ValueDescription>
               </ValueCard>
 
@@ -313,9 +309,9 @@ const About = () => {
                 <ValueIcon>
                   <Sword />
                 </ValueIcon>
-                <ValueTitle>Honra</ValueTitle>
+                <ValueTitle>Honestidade</ValueTitle>
                 <ValueDescription>
-                  Lutamos com dignidade e respeitamos nossos oponentes dignos.
+                  Nossa staff é comprometida e honesta, já distribui milhares de $ em itens, sempre conforme as regras e sem falcatruas.
                 </ValueDescription>
               </ValueCard>
 
@@ -326,9 +322,9 @@ const About = () => {
                 <ValueIcon>
                   <Users />
                 </ValueIcon>
-                <ValueTitle>União</ValueTitle>
+                <ValueTitle>Visão</ValueTitle>
                 <ValueDescription>
-                  Juntos somos invencíveis. A força da TSUNAMI vem de nossa unidade.
+                  A staff sempre vem escolhendo os melhores caminhos para a Guild, por mais que não agradem todo mundo, visando o longo prazo.
                 </ValueDescription>
               </ValueCard>
             </ValuesGrid>

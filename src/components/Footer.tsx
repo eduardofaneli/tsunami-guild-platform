@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { Waves, Heart, ExternalLink } from 'lucide-react'
+import { Heart, ExternalLink, Github } from 'lucide-react'
 
 const FooterSection = styled.footer`
   background: ${props => props.theme.colors.background.secondary};
@@ -60,7 +60,7 @@ const Logo = styled.div`
   color: ${props => props.theme.colors.primary};
 `
 
-const LogoIcon = styled(Waves)`
+const LogoIcon = styled.img`
   width: 32px;
   height: 32px;
   color: ${props => props.theme.colors.secondary};
@@ -236,13 +236,11 @@ const Footer = () => {
         <FooterContent>
           <FooterSection1>
             <Logo>
-              <LogoIcon />
+              <LogoIcon src="/fav-icon.png" />
               TSUNAMI
             </Logo>
             <Description>
-              A guild mais poderosa de Throne and Liberty. Unidos pela força, 
-              guiados pela estratégia e focados na vitória. Junte-se a nós e 
-              faça parte de nossa lenda épica.
+              A onda mais poderosa do Throne and Liberty. Junte-se a nós e faça parte dessa comunidade.
             </Description>
           </FooterSection1>
 
@@ -282,13 +280,13 @@ const Footer = () => {
                 <strong>Servidor:</strong> Starlight (SA)
               </InfoItem>
               <InfoItem>
-                <strong>Facção:</strong> TSUNAMI 水
+                <strong>Guild:</strong> 水 TSUNAMI 水
               </InfoItem>
               <InfoItem>
-                <strong>Rank:</strong> TOP 6
+                <strong>Horário:</strong> Prime Time (20h - 23h)
               </InfoItem>
               <InfoItem>
-                <strong>Membros:</strong> 50+ ativos
+                <strong>Foco:</strong> PvP, Competitivo, Comunidade
               </InfoItem>
               <InfoItem>
                 <strong>Fundada:</strong> Outubro de 2024
@@ -301,44 +299,35 @@ const Footer = () => {
 
         <BottomSection>
           <Copyright>
-            © 2024 Guild TSUNAMI 水. Feito com <Heart /> para a comunidade gamer.
+            © 2024 Guild TSUNAMI. Feito por NarebaCoder com <Heart /> para a comunidade gamer.
           </Copyright>
-          
+
           <SocialLinks>
+            <SocialLink
+              href="https://github.com/eduardofaneli"
+              target="_blank"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Github />
+            </SocialLink>
+
             <SocialLink
               href="https://discord.gg/BAr8yMF8YR"
               target="_blank"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-            >
-              💬
+            >              
+              <LogoIcon src="/discord.svg" />
             </SocialLink>
-            
-            {/* <SocialLink
-              href="https://www.youtube.com/@tsunami-guild"
-              target="_blank"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              📺
-            </SocialLink> */}
-            
-            {/* <SocialLink
-              href="https://twitch.tv/tsunami-guild"
-              target="_blank"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              🎮
-            </SocialLink> */}
-            
+
             <SocialLink
               onClick={scrollToTop}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               style={{ cursor: 'pointer' }}
             >
-              ⬆️
+              <LogoIcon src="/fav-icon.png" />
             </SocialLink>
           </SocialLinks>
         </BottomSection>

@@ -353,8 +353,7 @@ const Contact = () => {
                 <LeaderName>Sartore</LeaderName>
                 <LeaderRole>Guild Master</LeaderRole>
                 <LeaderDescription>
-                  Veterano de MMORPGs com mais de 10 anos de experiência. 
-                  Lidera a guild com estratégia e sabedoria.
+                  ...
                 </LeaderDescription>
               </LeaderCard>
 
@@ -366,8 +365,7 @@ const Contact = () => {
                 <LeaderName>Legazov</LeaderName>
                 <LeaderRole>Advisor</LeaderRole>
                 <LeaderDescription>
-                  Especialista em PvP e coordenação de raids. 
-                  Responsável por treinar novos membros.
+                  ...
                 </LeaderDescription>
               </LeaderCard>
 
@@ -379,8 +377,7 @@ const Contact = () => {
                 <LeaderName>DerbyVermelho</LeaderName>
                 <LeaderRole>Advisor</LeaderRole>
                 <LeaderDescription>
-                  Gerencia eventos e atividades da guild. 
-                  Sempre disponível para ajudar os membros.
+                  ...
                 </LeaderDescription>
               </LeaderCard>
             </LeadersGrid>

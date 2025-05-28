@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { Sword, Shield, Crown, Users } from 'lucide-react'
+import { Sword, Shield, Crown, Users, Clock, Ghost } from 'lucide-react'
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -287,17 +287,17 @@ const Hero = () => {
           animate="visible"
         >
           <Title variants={itemVariants}>
-            GUILD TSUNAMI
+             GUILD TSUNAMI
           </Title>
           
           <Subtitle variants={itemVariants}>
-            Dominando os Mares de Throne and Liberty
+            Um Tsunami de Poder no Throne and Liberty
           </Subtitle>
           
           <Description variants={itemVariants}>
-            Junte-se à mais poderosa guild de Throne and Liberty. Unidos pela força, 
+            Junte-se à nossa batalha no Throne and Liberty. Unidos pela força, 
             guiados pela estratégia e focados na vitória. Venha fazer parte da nossa 
-            lenda e conquiste territórios ao nosso lado.
+            lenda e conquiste vitórias ao nosso lado.
           </Description>
 
           <StatsGrid variants={itemVariants}>
@@ -317,10 +317,21 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <StatIcon>
-                <Crown />
+                <Clock />
               </StatIcon>
-              <StatNumber>2</StatNumber>
-              <StatLabel>Boomstone</StatLabel>
+              <StatNumber>PRIME TIME</StatNumber>
+              <StatLabel>20:00 ~ 23:00</StatLabel>
+            </StatCard>
+
+            <StatCard
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <StatIcon>
+                <Ghost />
+              </StatIcon>
+              <StatNumber>Comunidade</StatNumber>
+              <StatLabel>Try hard</StatLabel>
             </StatCard>
 
             <StatCard
@@ -330,19 +341,8 @@ const Hero = () => {
               <StatIcon>
                 <Sword />
               </StatIcon>
-              <StatNumber>500+</StatNumber>
-              <StatLabel>Vitórias</StatLabel>
-            </StatCard>
-
-            <StatCard
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <StatIcon>
-                <Shield />
-              </StatIcon>
-              <StatNumber>TOP 6</StatNumber>
-              <StatLabel>Ranking</StatLabel>
+              <StatNumber>PVP</StatNumber>
+              <StatLabel>competitivo</StatLabel>
             </StatCard>
           </StatsGrid>
 

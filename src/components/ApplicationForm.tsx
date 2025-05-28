@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { Send, User, Mail, GamepadIcon, MessageSquare, Clock, Star } from 'lucide-react'
+import { Send, User, Mail, GamepadIcon, MessageSquare, Clock, Star, Languages } from 'lucide-react'
 import { useState } from 'react'
 
 const ApplicationSection = styled.section`
@@ -225,7 +225,7 @@ const SuccessMessage = styled(motion.div)`
 interface FormData {
   playerName: string
   discordTag: string
-  email: string
+  idioma: string
   age: string
   level: string
   gearScore: string
@@ -364,20 +364,21 @@ const ApplicationForm = () => {
                 </FormGroup>
               </FormRow>
 
-              <FormRow>
+              <FormRow>              
                 <FormGroup>
                   <Label>
-                    <Mail />
-                    Email
+                    <Languages />
+                    Idioma *
                   </Label>
-                  <Input
-                    type="email"
-                    {...register('email', {
-                      pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Email inválido' }
-                    })}
-                    placeholder="seu.email@exemplo.com"
-                  />
-                  {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+                  <Select
+                    {...register('class', { required: 'Classe é obrigatória' })}
+                  >
+                    <option value="">Selecione o idioma que você fala</option>
+                    <option value="portugues">Português</option>
+                    <option value="ingles">Inglês</option>
+                    <option value="espanhol">Espanhol</option>
+                  </Select>
+                  {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
                 </FormGroup>
 
                 <FormGroup>
@@ -398,21 +399,23 @@ const ApplicationForm = () => {
               </FormRow>
 
               <FormRow>
-                <FormGroup>
+                 <FormGroup>
                   <Label>
-                    <Star />
-                    Level *
+                    <Clock />
+                    Disponibilidade *
                   </Label>
-                  <Input
-                    type="number"
-                    {...register('level', { 
-                      required: 'Level é obrigatório',
-                      min: { value: 40, message: 'Level mínimo: 40' }
-                    })}
-                    placeholder="Seu level atual"
-                  />
-                  {errors.level && <ErrorMessage>{errors.level.message}</ErrorMessage>}
+                  <Select
+                    {...register('playtime', { required: 'Disponibilidade é obrigatória' })}
+                  >
+                    <option value="">Selecione sua disponibilidade</option>
+                    <option value="casual">Casual (2-3x por semana)</option>
+                    <option value="regular">Regular (4-5x por semana)</option>
+                    <option value="hardcore">Hardcore (todos os dias)</option>
+                  </Select>
+                  {errors.playtime && <ErrorMessage>{errors.playtime.message}</ErrorMessage>}
                 </FormGroup>
+
+               
 
                 <FormGroup>
                   <Label>
@@ -453,21 +456,28 @@ const ApplicationForm = () => {
                   {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
                 </FormGroup>
 
-                <FormGroup>
+                 <FormGroup>
                   <Label>
-                    <Clock />
-                    Disponibilidade *
+                    <GamepadIcon />
+                    Classe Secundária *
                   </Label>
                   <Select
-                    {...register('playtime', { required: 'Disponibilidade é obrigatória' })}
+                    {...register('class', { required: 'Classe é obrigatória' })}
                   >
-                    <option value="">Selecione sua disponibilidade</option>
-                    <option value="casual">Casual (2-3x por semana)</option>
-                    <option value="regular">Regular (4-5x por semana)</option>
-                    <option value="hardcore">Hardcore (todos os dias)</option>
+                    <option value="">Selecione sua classe</option>
+                    <option value="berserker">Berserker</option>
+                    <option value="destroyer">Destroyer</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="dark-knight">Dark Knight</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="arcane-mage">Arcane Mage</option>
+                    <option value="curse-weaver">Curse Weaver</option>
+                    <option value="sage">Sage</option>
                   </Select>
-                  {errors.playtime && <ErrorMessage>{errors.playtime.message}</ErrorMessage>}
+                  {errors.class && <ErrorMessage>{errors.class.message}</ErrorMessage>}
                 </FormGroup>
+
+               
               </FormRow>
 
               <FormGroup>
