@@ -3,13 +3,22 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
-  // Usar sempre o base path para facilitar o desenvolvimento e testes
-  const base = isProduction ? '/tsunami-guild-platform/' : '/'
-  
+  const isVercelBuild = process.env.VERCEL_ENV === 'production' ||
+    process.env.VERCEL_ENV === 'preview' ||
+    process.env.VERCEL_ENV === 'development'; // Para Vercel CLI local
+
+  let basePath = '/'; // Default para desenvolvimento local
+
+  if (isVercelBuild) {
+    basePath = '/'; // Vercel sempre usa a raiz
+  } else if (mode === 'production') {
+    // Para outros builds de produção (ex: GitHub Pages)
+    basePath = '/tsunami-guild-platform/';
+  }
+
   return {
     plugins: [react()],
-    base,
+    base: basePath,
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
