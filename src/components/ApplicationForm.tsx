@@ -598,9 +598,12 @@ const ApplicationForm = () => {
                   <Input
                     {...register('discordTag', {
                       required: 'Discord tag é obrigatório',
-                      pattern: { value: /^.+#\d{4}$/, message: 'Formato: Usuario#1234' }
+                      pattern: { 
+                        value: /^\S{2,32}(#\d{4})?$/, 
+                        message: 'Formato: Usuario ou Usuario#1234 (2-32 caracteres, sem espaços)' 
+                      }
                     })}
-                    placeholder="Usuario#1234"
+                    placeholder="Usuario ou Usuario#1234"
                   />
                   {errors.discordTag && <ErrorMessage>{errors.discordTag.message}</ErrorMessage>}
                 </FormGroup>
