@@ -1,12 +1,5 @@
 import type { ApplicationFormData } from '../components/ApplicationForm';
 
-// Interface para compatibilidade com diferentes estruturas de classes
-interface ClassInfo {
-    className?: string;
-    class?: string;
-    weapon1: string;
-    weapon2: string;
-}
 
 export const buildDiscordPayload = (data: ApplicationFormData, roleId?: string) => {
     const fields = [
