@@ -5,7 +5,8 @@ import { commonAssets, getAssetPath, ASSET_TYPES } from '../services/assetServic
 
 // Interface para integração com ApplicationFormData
 export interface ClassInfo {
-  className: string;
+  className?: string; // Tornando o className opcional
+  class?: string;     // Adicionando a propriedade class para compatibilidade
   weapon1: string;
   weapon2: string;
 }
@@ -419,7 +420,7 @@ const ClassDropdown: React.FC<ClassDropdownProps> = ({
               <WeaponsInfo>({selectedClass.weapon1} | {selectedClass.weapon2})</WeaponsInfo>
             </>
           ) : !value ? (
-            <EmptySelectionText>Sem classe secundária</EmptySelectionText>
+            <EmptySelectionText>Nenhuma classe selecionada</EmptySelectionText>
           ) : (
             <EmptySelectionText>{placeholderText}</EmptySelectionText>
           )}

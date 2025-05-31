@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { Send, User, GamepadIcon, MessageSquare, Clock, Languages } from 'lucide-react'
 import ClassDropdown from './ClassDropdown'
+import GearScoreInput from './GearScoreInput'
 
 const ApplicationSection = styled.section`
   padding: ${props => props.theme.spacing['5xl']} 0;
@@ -285,15 +286,21 @@ const ModernButton = styled.button<ModernButtonProps>`
   }
 `;
 
-interface ClassInfo {
-  className: string;
-  weapon1: string;
-  weapon2: string;
+interface PreviousGuild {
+  name?: string;
+  reason?: string;
 }
 
-export interface PreviousGuild {
-  name: string;
-  reason?: string;
+// Importando ClassInfo do ClassDropdown
+import type { ClassInfo as ClassDropdownInfo } from './ClassDropdown';
+
+// Estendendo o tipo ClassInfo para compatibilidade com ClassDropdown
+interface ClassInfo extends Omit<ClassDropdownInfo, 'className'> {
+  class: string;
+  weapon1: string;
+  weapon2: string;
+  weapon1_icon_url: string;
+  weapon2_icon_url: string;
 }
 
 export interface ApplicationFormData {
@@ -305,6 +312,7 @@ export interface ApplicationFormData {
   gearScore: number;
   primaryClass: ClassInfo;
   secondaryClass?: ClassInfo;
+  secondaryGearScore?: number; // Adicionado campo para gear score secundário
   previousGuilds: PreviousGuild[];
   experience: string;
   motivation?: string;
@@ -324,6 +332,9 @@ const ApplicationForm = () => {
   useEffect(() => {
     setHasCache(!!localStorage.getItem(LOCAL_STORAGE_KEY))
   }, [])
+  
+  // Estado para controlar se o gear score secundário é obrigatório
+  const [secondaryGearScoreRequired, setSecondaryGearScoreRequired] = useState(false)
 
   const {
     register,
@@ -332,7 +343,8 @@ const ApplicationForm = () => {
     formState: { errors },
     reset,
     // setValue removido pois não é utilizado
-    trigger
+    trigger,
+    watch // Adicionando o método watch para monitorar campos
   } = useForm<ApplicationFormData>({
     defaultValues: {
       previousGuilds: [{ name: '' }],
@@ -379,6 +391,7 @@ const ApplicationForm = () => {
       gearScore: undefined,
       primaryClass: undefined,
       secondaryClass: undefined,
+      secondaryGearScore: undefined, // Adicionando reset para o gear score secundário
       previousGuilds: [{ name: '' }],
       experience: '',
       motivation: '',
@@ -452,6 +465,14 @@ const ApplicationForm = () => {
       transition: { duration: 0.5, ease: 'easeOut' }
     }
   }
+
+  // Monitorando a classe secundária para tornar o gear score secundário obrigatório
+  const secondaryClass = watch('secondaryClass');
+  
+  useEffect(() => {
+    // Se a classe secundária estiver preenchida, o gear score secundário deve ser obrigatório
+    setSecondaryGearScoreRequired(!!secondaryClass);
+  }, [secondaryClass]);
 
   if (isSubmitted) {
     return (
@@ -598,9 +619,9 @@ const ApplicationForm = () => {
                   <Input
                     {...register('discordTag', {
                       required: 'Discord tag é obrigatório',
-                      pattern: { 
-                        value: /^\S{2,32}(#\d{4})?$/, 
-                        message: 'Formato: Usuario ou Usuario#1234 (2-32 caracteres, sem espaços)' 
+                      pattern: {
+                        value: /^\S{2,32}(#\d{4})?$/,
+                        message: 'Formato: Usuario ou Usuario#1234 (2-32 caracteres, sem espaços)'
                       }
                     })}
                     placeholder="Usuario ou Usuario#1234"
@@ -633,11 +654,16 @@ const ApplicationForm = () => {
                     Idade *
                   </Label>
                   <Input
-                    type="number"
+                    type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    min="0"
-                    maxLength={2} // Added maxLength for age
+                    maxLength={2}
+                    style={{ 
+                      /* Remove as setas do input número */
+                      appearance: "textfield",
+                      WebkitAppearance: "none",
+                      MozAppearance: "textfield"
+                    }}
                     onKeyDown={e => {
                       if (
                         !(
@@ -646,6 +672,14 @@ const ApplicationForm = () => {
                         )
                       ) {
                         e.preventDefault();
+                      }
+                    }}
+                    // Precisamos usar onInput em vez de onChange para não interferir
+                    // com o react-hook-form mas ainda limitar o input
+                    onInput={e => {
+                      // Limita a entrada a 2 dígitos
+                      if (e.currentTarget.value.length > 2) {
+                        e.currentTarget.value = e.currentTarget.value.slice(0, 2);
                       }
                     }}
                     {...register('age', {
@@ -678,80 +712,77 @@ const ApplicationForm = () => {
                   {errors.playtime && <ErrorMessage>{errors.playtime.message}</ErrorMessage>}
                 </FormGroup>
 
-                <FormGroup>
-                  <Label>
-                    <GamepadIcon />
-                    Gear Score *
-                  </Label>
-                  <Input
-                    type="number"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    min="0"
-                    maxLength={4} // Added maxLength for gear score
-                    onKeyDown={e => {
-                      if (
-                        !(
-                          (e.key >= '0' && e.key <= '9') ||
-                          ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
-                        )
-                      ) {
-                        e.preventDefault();
-                      }
-                    }}
-                    {...register('gearScore', {
-                      required: 'Gear Score é obrigatório',
-                      min: { value: 4000, message: 'Gear Score mínimo: 4000' },
-                      max: { value: 9999, message: 'Gear Score máximo: 9999' }, // Ensured max is 4 digits
-                      valueAsNumber: true,
-                      validate: value => Number.isInteger(value) || 'Digite apenas números inteiros'
-                    })}
-                    placeholder="Seu gear score"
-                  />
-                  {errors.gearScore && <ErrorMessage>{errors.gearScore.message}</ErrorMessage>}
-                </FormGroup>
+
               </FormRow>
 
-              <div className="classes-section">
-                <FormGroup>
-                  <Label>
-                    <GamepadIcon />
-                    Classe Principal *
-                  </Label>
-                  <Controller
-                    name="primaryClass"
-                    control={control}
-                    rules={{ required: 'Classe principal é obrigatória' }}
-                    render={({ field }) => (
-                      <ClassDropdown
-                        value={field.value}
-                        onChange={field.onChange}
-                        error={errors.primaryClass?.message}
-                      />
-                    )}
-                  />
-                </FormGroup>
-              </div>
-
-              <FormGroup>
-                <Label>
-                  <GamepadIcon />
-                  Classe Secundária
-                </Label>
-                <Controller
-                  name="secondaryClass"
-                  control={control}
-                  render={({ field }) => (
-                    <ClassDropdown
-                      value={field.value}
-                      onChange={field.onChange}
-                      isSecondary={true}
-                      error={errors.secondaryClass?.message}
+              <FormRow>
+                <div className="classes-section">
+                  <FormGroup>
+                    <Label>
+                      <GamepadIcon />
+                      Classe Principal *
+                    </Label>
+                    <Controller
+                      name="primaryClass"
+                      control={control}
+                      rules={{ required: 'Classe principal é obrigatória' }}
+                      render={({ field }) => (
+                        <ClassDropdown
+                          value={field.value}
+                          onChange={field.onChange}
+                          isSecondary={false}
+                          error={errors.primaryClass?.message}
+                        />
+                      )}
                     />
-                  )}
-                />
-              </FormGroup>
+                  </FormGroup>
+                </div>
 
+                {/* Usando o novo componente GearScoreInput para a classe principal */}
+                <GearScoreInput
+                  name="gearScore"
+                  label="Gear Score Principal"
+                  control={control}
+                  error={errors.gearScore}
+                  minValue={4000}
+                  maxValue={9999}
+                  isRequired={true}
+                />
+              </FormRow>
+
+              <FormRow>
+                <div className="classes-section">
+                  <FormGroup>
+                    <Label>
+                      <GamepadIcon />
+                      Classe Secundária
+                    </Label>
+                    <Controller
+                      name="secondaryClass"
+                      control={control}
+                      render={({ field }) => (
+                        <ClassDropdown
+                          value={field.value}
+                          onChange={field.onChange}
+                          isSecondary={true}
+                          error={errors.secondaryClass?.message}
+                        />
+                      )}
+                    />
+                  </FormGroup>
+                </div>
+
+                {/* Adicionando o GearScoreInput para a classe secundária - obrigatório apenas se houver classe secundária */}
+                <GearScoreInput
+                  name="secondaryGearScore"
+                  label="Gear Score Secundário"
+                  control={control}
+                  error={errors.secondaryGearScore}
+                  minValue={0}
+                  maxValue={9999}
+                  isRequired={secondaryGearScoreRequired}
+                />
+              </FormRow>
               <FormGroup>
                 <Label>
                   <User />
@@ -848,5 +879,8 @@ const ApplicationForm = () => {
     </ApplicationSection>
   )
 }
+
+// Exportar os componentes de estilo para uso em outros arquivos
+export { FormGroup, Label, Input, ErrorMessage };
 
 export default ApplicationForm
